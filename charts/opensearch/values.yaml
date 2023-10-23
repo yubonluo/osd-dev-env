@@ -125,7 +125,7 @@ podAnnotations: {}
 
 # additionals labels
 labels: {}
-opensearchJavaOpts: "-Xmx512M -Xms512M"
+opensearchJavaOpts: "-Xmx4G -Xms4G"
 resources:
   requests:
     cpu: "2"
