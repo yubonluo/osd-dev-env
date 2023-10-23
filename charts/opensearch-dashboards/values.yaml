@@ -14,7 +14,7 @@ global:
 image:
   repository: "opensearchproject/opensearch-dashboards"
   # override image tag, which is .Chart.AppVersion by default
-  tag: "2.9.0"
+  tag: "2.10.0"
   pullPolicy: "IfNotPresent"
 startupProbe:
   tcpSocket:
