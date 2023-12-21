@@ -8,6 +8,8 @@ resources:
 - github.com/argoproj/argo-cd/manifests/ha/cluster-install?ref=v2.5.5
 - argocd-vault-replacer-secret.yaml
 - serviceaccount.yaml
+- argo-grpc.yaml
+- argo-ingress.yaml
 
 patches:
 - path: argo-cm.yaml

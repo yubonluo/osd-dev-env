@@ -1,6 +1,3 @@
 {
-  "plugins": [{
-    "name": "assistantDashboards",
-    "url": "https://github.com/ruanyl/ml-commons-dev-env/releases/download/assistantDashboards-2.11.0/assistantDashboards-2.11.0.zip"
-  }]
+  "plugins": []
 }
