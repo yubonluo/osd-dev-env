@@ -84,7 +84,7 @@ USER $UID
 # Setup OpenSearch
 # Disable security demo installation during image build, and allow user to disable during startup of the container
 # Enable security plugin during image build, and allow user to disable during startup of the container
-ARG DISABLE_INSTALL_DEMO_CONFIG=false
+ARG DISABLE_INSTALL_DEMO_CONFIG=true
 ARG DISABLE_SECURITY_PLUGIN=false
 RUN ./opensearch-onetime-setup.sh
 
