@@ -16,9 +16,9 @@ components:
   - name: observabilityDashboards
     repository: https://github.com/opensearch-project/dashboards-observability.git
     ref: main
-  - name: reportsDashboards
-    repository: https://github.com/opensearch-project/dashboards-reporting.git
-    ref: main
+      # - name: reportsDashboards
+      #   repository: https://github.com/opensearch-project/dashboards-reporting.git
+      #   ref: main
   - name: ganttChartDashboards
     repository: https://github.com/opensearch-project/dashboards-visualizations.git
     working_directory: gantt-chart
