@@ -152,12 +152,13 @@ ingress:
   ingressClassName: alb
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
-    # WARNING: HTTPS should be enabled for production deployment
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP": 80}]'
     alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
   labels: {}
   hosts:
-    - paths:
+    - hosts: ollye2e.ruanyl.people.aws.dev
+      paths:
         - path: /
           backend: {}
 resources:
