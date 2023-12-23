@@ -160,6 +160,7 @@ spec:
           - |
             #!/usr/bin/bash
             set -e
+            while true; do sleep 30; done;
 
             {{- $artifacts := .Files.Get "plugins/artifacts.json" | fromJson }}
             {{- range $plugin := $artifacts.plugins  }}
