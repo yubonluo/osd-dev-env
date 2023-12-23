@@ -157,7 +157,7 @@ ingress:
     alb.ingress.kubernetes.io/ssl-redirect: '443'
   labels: {}
   hosts:
-    - hosts: ollye2e.ruanyl.people.aws.dev
+    - host: ollye2e.ruanyl.people.aws.dev
       paths:
         - path: /
           backend: {}
