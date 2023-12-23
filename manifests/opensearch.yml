@@ -122,8 +122,8 @@ components:
       - gradle:properties:version
       - gradle:dependencies:opensearch.version
   - name: sql
-    repository: https://github.com/opensearch-project/sql.git
-    ref: main
+    repository: https://github.com/zane-neo/sql.git
+    ref: test-compilation
     platforms:
       - linux
       - windows
@@ -140,8 +140,8 @@ components:
       - gradle:properties:version
       - gradle:dependencies:opensearch.version
   - name: anomaly-detection
-    repository: https://github.com/opensearch-project/anomaly-detection.git
-    ref: main
+    repository: https://github.com/zane-neo/anomaly-detection.git
+    ref: test-compilation
     platforms:
       - linux
       - windows
@@ -199,12 +199,12 @@ components:
     checks:
       - gradle:properties:version
       - gradle:dependencies:opensearch.version
-        # - name: skills
-        #   repository: https://github.com/zane-neo/skills.git
-        #   ref: test-compilation
-        #   platforms:
-        #     - linux
-        #     - windows
-        #   checks:
-        #     - gradle:properties:version
-        #     - gradle:dependencies:opensearch.version
+  - name: skills
+    repository: https://github.com/zane-neo/skills.git
+    ref: test-compilation
+    platforms:
+      - linux
+      - windows
+    checks:
+      - gradle:properties:version
+      - gradle:dependencies:opensearch.version
