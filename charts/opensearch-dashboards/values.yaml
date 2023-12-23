@@ -105,6 +105,7 @@ config:
     opensearchDashboards.branding.useExpandedHeader: false
     # Enable multiple datasource
     data_source.enabled: true
+    assistant.chat.enabled: true
     # workspace.enabled: true
     # Enable ml_commons_dashboards
     # ml_commons_dashboards.enabled: true
