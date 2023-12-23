@@ -48,8 +48,8 @@ components:
     repository: https://github.com/opensearch-project/security-analytics-dashboards-plugin.git
     ref: main
   - name: securityDashboards
-    repository: https://github.com/opensearch-project/security-dashboards-plugin.git
-    ref: main
+    repository: https://github.com/ruanyl/security-dashboards-plugin.git
+    ref: fix-can-not-find-module
   - name: searchRelevanceDashboards
     repository: https://github.com/opensearch-project/dashboards-search-relevance.git
     ref: main
