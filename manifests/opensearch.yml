@@ -123,7 +123,7 @@ components:
       - gradle:dependencies:opensearch.version
   - name: sql
     repository: https://github.com/zane-neo/sql.git
-    ref: test-compilation
+    ref: add-publishToMavenLocal
     platforms:
       - linux
       - windows
@@ -141,7 +141,7 @@ components:
       - gradle:dependencies:opensearch.version
   - name: anomaly-detection
     repository: https://github.com/zane-neo/anomaly-detection.git
-    ref: test-compilation
+    ref: add-publishToMavenLocal
     platforms:
       - linux
       - windows
@@ -199,12 +199,12 @@ components:
     checks:
       - gradle:properties:version
       - gradle:dependencies:opensearch.version
-        # - name: skills
-        #   repository: https://github.com/zane-neo/skills.git
-        #   ref: test-compilation
-        #   platforms:
-        #     - linux
-        #     - windows
-        #   checks:
-        #     - gradle:properties:version
-        #     - gradle:dependencies:opensearch.version
+  - name: skills
+    repository: https://github.com/zane-neo/skills.git
+    ref: change-js-plugin-group
+    platforms:
+      - linux
+      - windows
+    checks:
+      - gradle:properties:version
+      - gradle:dependencies:opensearch.version
