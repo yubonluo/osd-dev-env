@@ -201,7 +201,7 @@ components:
       - gradle:dependencies:opensearch.version
   - name: skills
     repository: https://github.com/zane-neo/skills.git
-    ref: change-js-plugin-group
+    ref: change-js-to-jar-denpendency
     platforms:
       - linux
       - windows
