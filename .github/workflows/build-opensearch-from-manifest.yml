@@ -93,7 +93,7 @@ jobs:
         if: env.should_run_workflow == 'true'
         run: |
           cd opensearch-build
-          ./build.sh ../opensearch-dev-env/manifests/opensearch.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --snapshot true
+          ./build.sh ../opensearch-dev-env/manifests/opensearch.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --snapshot
           ./assemble.sh tar/builds/opensearch/manifest.yml
       - name: Build and push docker image
         if: env.should_run_workflow == 'true'
