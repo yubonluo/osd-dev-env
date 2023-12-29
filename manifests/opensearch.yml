@@ -200,7 +200,7 @@ components:
       - gradle:properties:version
       - gradle:dependencies:opensearch.version
   - name: skills
-    repository: https://github.com/zane-neo/skills.git
+    repository: https://github.com/ruanyl/skills.git
     ref: fix-IT-run-issue
     platforms:
       - linux
