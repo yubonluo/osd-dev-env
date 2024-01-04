@@ -191,8 +191,8 @@ components:
       - gradle:properties:version
       - gradle:dependencies:opensearch.version
   - name: flow-framework
-    repository: https://github.com/opensearch-project/flow-framework.git
-    ref: main
+    repository: https://github.com/dbwiddis/flow-framework.git
+    ref: writeable-collections
     platforms:
       - linux
       - windows
