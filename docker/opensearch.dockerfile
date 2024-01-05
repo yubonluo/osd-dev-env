@@ -49,7 +49,7 @@ RUN ls -l $TEMP_DIR && \
 
 ########################### Stage 1 ########################
 # Copy working directory to the actual release docker images
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 ARG UID=1000
 ARG GID=1000
