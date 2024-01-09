@@ -191,7 +191,7 @@ components:
       - gradle:properties:version
       - gradle:dependencies:opensearch.version
   - name: flow-framework
-    repository: https://github.com/gaobinlong/flow-framework.git
+    repository: https://github.com/opensearch-project/flow-framework.git
     ref: main
     platforms:
       - linux
