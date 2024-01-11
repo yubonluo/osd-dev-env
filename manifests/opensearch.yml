@@ -10,7 +10,7 @@ ci:
 components:
   - name: OpenSearch
     repository: https://github.com/opensearch-project/OpenSearch.git
-    ref: ebda9639f4ca98a2181bdcb2c43f82224b1d2a34
+    ref: main
     checks:
       - gradle:publish
       - gradle:properties:version
@@ -39,8 +39,8 @@ components:
       - linux
       - windows
   - name: k-NN
-    repository: https://github.com/opensearch-project/k-NN.git
-    ref: main
+    repository: https://github.com/naveentatikonda/k-NN.git
+    ref: bump_lucene_codec_to_99
     platforms:
       - linux
       - windows
