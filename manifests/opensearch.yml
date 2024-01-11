@@ -181,15 +181,15 @@ components:
         #  checks:
         #    - gradle:properties:version
         #    - gradle:dependencies:opensearch.version
-  - name: custom-codecs
-    repository: https://github.com/opensearch-project/custom-codecs.git
-    ref: main
-    platforms:
-      - linux
-      - windows
-    checks:
-      - gradle:properties:version
-      - gradle:dependencies:opensearch.version
+        # - name: custom-codecs
+        #   repository: https://github.com/opensearch-project/custom-codecs.git
+        #   ref: main
+        #   platforms:
+        #     - linux
+        #     - windows
+        #   checks:
+        #     - gradle:properties:version
+        #     - gradle:dependencies:opensearch.version
   - name: flow-framework
     repository: https://github.com/opensearch-project/flow-framework.git
     ref: main
