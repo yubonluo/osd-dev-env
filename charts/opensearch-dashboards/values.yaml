@@ -101,7 +101,7 @@ config:
     opensearch_security.cookie.ttl: 86400000
     opensearch_security.session.ttl: 86400000
     opensearch_security.session.keepalive: true
-    observability.query_assist.enabled: false
+    observability.query_assist.enabled: true
     # Use this setting if you are running opensearch-dashboards without https
     opensearch_security.cookie.secure: false
     server.host: '0.0.0.0'
