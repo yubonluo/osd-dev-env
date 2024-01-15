@@ -102,6 +102,9 @@ config:
     opensearch_security.session.ttl: 86400000
     opensearch_security.session.keepalive: true
     observability.query_assist.enabled: true
+    observability.query_assist.response_summary_agent_name: "Response summary agent"
+    observability.query_assist.error_summary_agent_name: "Error summary agent"
+    observability.query_assist.ppl_agent_name: "PPL agent"
     # Use this setting if you are running opensearch-dashboards without https
     opensearch_security.cookie.secure: false
     server.host: '0.0.0.0'
