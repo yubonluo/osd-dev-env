@@ -39,8 +39,8 @@ components:
       - linux
       - windows
   - name: k-NN
-    repository: https://github.com/naveentatikonda/k-NN.git
-    ref: bump_lucene_codec_to_99
+    repository: https://github.com/opensearch-project/k-NN.git
+    ref: main
     platforms:
       - linux
       - windows
@@ -66,8 +66,8 @@ components:
       - gradle:properties:version
       - gradle:dependencies:opensearch.version
   - name: ml-commons
-    repository: https://github.com/opensearch-project/ml-commons.git
-    ref: main
+    repository: https://github.com/zane-neo/ml-commons.git
+    ref: rca_blocking
     platforms:
       - linux
       - windows
