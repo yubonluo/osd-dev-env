@@ -5,6 +5,10 @@
       "url": "https://github.com/ruanyl/ml-commons-dev-env/releases/download/opensearch-flow-framework-3.0.0.0-SNAPSHOT.1/opensearch-flow-framework-3.0.0.0-SNAPSHOT.zip"
     },
     {
+      "name": "opensearch-skills",
+      "url": "https://github.com/ruanyl/ml-commons-dev-env/releases/download/opensearch-skills-3.0.0.0-SNAPSHOT/opensearch-skills-3.0.0.0-SNAPSHOT.zip"
+    },
+    {
       "name": "opensearch-ml",
       "url": "https://github.com/ruanyl/ml-commons-dev-env/releases/download/opensearch-ml-3.0.0.0-SNAPSHOT/opensearch-ml-3.0.0.0-SNAPSHOT.zip"
     }
