@@ -124,11 +124,11 @@ podAnnotations: {}
 
 # additionals labels
 labels: {}
-opensearchJavaOpts: "-Xmx4G -Xms4G"
+opensearchJavaOpts: "-Xmx2G -Xms2G"
 resources:
   requests:
     cpu: "2"
-    memory: "8Gi"
+    memory: "4Gi"
 initResources: {}
 #  limits:
 #     cpu: "25m"
