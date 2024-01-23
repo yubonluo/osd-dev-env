@@ -1,4 +1,4 @@
-replicas: 2
+replicas: 3
 
 opensearchJavaOpts: "-Xmx2G -Xms2G"
 

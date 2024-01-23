@@ -1,8 +1,0 @@
-replicas: 3
-
-opensearchJavaOpts: "-Xmx2G -Xms2G"
-
-resources:
-  requests:
-    cpu: "2"
-    memory: "4Gi"
