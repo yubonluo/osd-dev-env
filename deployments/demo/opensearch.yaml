@@ -1,5 +1,11 @@
 replicas: 2
 
+image:
+  repository: "r9h9r7k4/opensearch-dev"
+  # override image tag, which is .Chart.AppVersion by default
+  tag: "7622430882"
+  pullPolicy: "IfNotPresent"
+
 opensearchJavaOpts: "-Xmx2G -Xms2G"
 
 resources:
