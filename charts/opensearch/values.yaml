@@ -17,11 +17,10 @@ roles:
   - remote_cluster_client
 replicas: 2
 # if not set, falls back to parsing .Values.imageTag, then .Chart.appVersion.
-majorVersion: "7"
-global:
+majorVersion: ""
+# global:
   # Set if you want to change the default docker registry, e.g. a private one.
   # dockerRegistry: "public.ecr.aws"
-  dockerRegistry: "public.ecr.aws"
 # Allows you to add any config files in {{ .Values.opensearchHome }}/config
 opensearchHome: /usr/share/opensearch
 # such as opensearch.yml and log4j2.properties
@@ -259,9 +258,9 @@ hostAliases: []
 #   - "bar.local"
 
 image:
-  repository: "r9h9r7k4/opensearch-dev"
+  repository: "opensearchproject/opensearch"
   # override image tag, which is .Chart.AppVersion by default
-  tag: "7549061222"
+  tag: ""
   pullPolicy: "IfNotPresent"
 podAnnotations: {}
 # iam.amazonaws.com/role: es-cluster
@@ -1288,6 +1287,8 @@ sysctlInit:
 ## Enable to add 3rd Party / Custom plugins not offered in the default OpenSearch image.
 plugins:
   enabled: false
+  removeList: []
+  # - opensearch-example-plugin
   installList: []
   # - example-fake-plugin
 sampleData:

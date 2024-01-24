@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+  namespace: argocd
+data:
+  service.webhook.slack_webhook: |
+    url: https://hooks.slack.com/workflows/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
+    headers:
+    - name: Content-Type
+      value: application/json
+
+  service.webhook.slack_webhook_deleted: |
+    url: https://hooks.slack.com/workflows/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
+    headers:
+    - name: Content-Type
+      value: application/json
+
+  template.send-slack: |
+    webhook:
+      slack_webhook:
+        method: POST
+        body: |
+          {
+            "name": "{{.app.metadata.name}}",
+            "email": "{{.app.metadata.annotations.owner}}",
+            "url": "{{index .app.status.summary.externalURLs 0}}",
+            "syncStatus": "{{.app.status.sync.status}}",
+            "healthStatus": "{{.app.status.health.status}}",
+            "operationPhase": "{{.app.status.operationState.phase}}",
+            "content": "{{.app.status.operationState.message}}"
+          }
+
+  template.send-slack-deleted: |
+    webhook:
+      slack_webhook_deleted:
+        method: POST
+        body: |
+          {
+            "name": "{{.app.metadata.name}}",
+            "email": "{{.app.metadata.annotations.owner}}",
+          }
+
+  trigger.on-deployed: |
+    - description: Application is synced and healthy. Triggered once per commit.
+      oncePer: app.status.operationState.syncResult.revision
+      send:
+      - send-slack
+      when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status
+        == 'Healthy'
+  trigger.on-health-degraded: |
+    - description: Application has degraded
+      send:
+      - send-slack
+      when: app.status.health.status == 'Degraded'
+  trigger.on-sync-failed: |
+    - description: Application syncing has failed
+      send:
+      - send-slack
+      when: app.status.operationState.phase in ['Error', 'Failed']
+  trigger.on-deleted: |
+    - description: Application is deleted.
+      oncePer: app.metadata.name
+      send:
+      - send-slack-deleted
+      when: app.metadata.deletionTimestamp != nil

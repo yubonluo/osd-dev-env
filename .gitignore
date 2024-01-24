@@ -1,3 +1,4 @@
 .cache
 .build
 .downloads
+.DS_Store

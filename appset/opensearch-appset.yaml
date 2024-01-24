@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: opensearch
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+              - appName: opensearch
+              - appName: opensearch-dashboards
+          - git:
+              repoURL: https://github.com/ruanyl/ml-commons-dev-env.git
+              revision: argocd-appset
+              files:
+              - path: "deployments/**/config.json"
+
+  template:
+    metadata:
+      name: '{{appName}}-{{path.basename}}'
+      annotations:
+        owner: '{{owner}}'
+        notifications.argoproj.io/subscribe.on-deployed.slack_webhook: ""
+        notifications.argoproj.io/subscribe.on-health-degraded.slack_webhook: ""
+        notifications.argoproj.io/subscribe.on-sync-failed.slack_webhook: ""
+        notifications.argoproj.io/subscribe.on-deleted.slack_webhook_deleted: ""
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/ruanyl/ml-commons-dev-env.git
+        targetRevision: argocd-appset
+        path: "charts/{{appName}}"
+        plugin:
+          name: helm-argocd-vault-replacer
+          env:
+            - name: VALUE_FILES
+              value: "../../deployments/{{path.basename}}/{{appName}}.yaml"
+      destination:
+        server: "https://kubernetes.default.svc"
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - CreateNamespace=true

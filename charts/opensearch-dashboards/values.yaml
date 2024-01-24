@@ -7,14 +7,13 @@
 
 opensearchHosts: "https://opensearch-cluster-master:9200"
 replicaCount: 1
-global:
+# global:
   # Set if you want to change the default docker registry, e.g. a private one.
   # dockerRegistry: "public.ecr.aws"
-  dockerRegistry: "public.ecr.aws"
 image:
-  repository: "r9h9r7k4/opensearch-dashboards-dev"
+  repository: "opensearchproject/opensearch-dashboards"
   # override image tag, which is .Chart.AppVersion by default
-  tag: "7523695040"
+  tag: ""
   pullPolicy: "IfNotPresent"
 startupProbe:
   tcpSocket:

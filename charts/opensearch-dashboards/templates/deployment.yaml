@@ -161,15 +161,13 @@ spec:
             #!/usr/bin/bash
             set -e
 
-            {{- $artifacts := .Files.Get "plugins/artifacts.json" | fromJson }}
-            {{- range $plugin := $artifacts.plugins  }}
-            if ./bin/opensearch-dashboards-plugin list | grep -q {{ $plugin.name }}; then
-              ./bin/opensearch-dashboards-plugin remove {{ $plugin.name }}
-            fi
-            ./bin/opensearch-dashboards-plugin install {{ $plugin.url }}
-            {{- end  }}
-
             {{- if .Values.plugins.enabled }}
+            {{- range $plugin := .Values.plugins.removeList }}
+            if ./bin/opensearch-dashboards-plugin list | grep -q {{ $plugin }}; then
+              ./bin/opensearch-dashboards-plugin remove {{ $plugin }}
+            fi
+            {{- end }}
+
             {{- range $plugin := .Values.plugins.installList }}
             ./bin/opensearch-dashboards-plugin install {{ $plugin }}
             {{- end }}
