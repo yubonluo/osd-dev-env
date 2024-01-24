@@ -2,11 +2,3 @@ replicaCount: 1
 
 image:
   tag: "2.11.0"
-
-resources:
-  requests:
-    cpu: "1"
-    memory: "4Gi"
-  limits:
-    cpu: "2"
-    memory: "6Gi"
