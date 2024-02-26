@@ -1,6 +1,3 @@
 {
-  "owner": "ruanyl@amazon.com",
-  "repo": {
-    "revision": "argocd-appset"
-  }
+  "owner": "ruanyl@amazon.com"
 }

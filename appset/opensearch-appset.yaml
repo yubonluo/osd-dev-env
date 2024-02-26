@@ -13,7 +13,7 @@ spec:
               - appName: opensearch-dashboards
           - git:
               repoURL: https://github.com/ruanyl/ml-commons-dev-env.git
-              revision: argocd-appset
+              revision: main
               files:
               - path: "deployments/**/config.json"
 
@@ -30,7 +30,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/ruanyl/ml-commons-dev-env.git
-        targetRevision: argocd-appset
+        targetRevision: main
         path: "charts/{{appName}}"
         plugin:
           name: helm-argocd-vault-replacer

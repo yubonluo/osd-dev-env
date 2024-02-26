@@ -226,5 +226,6 @@ lifecycle: {}
 ## Enable to add 3rd Party / Custom plugins not offered in the default OpenSearchDashboards image.
 plugins:
   enabled: false
+  removeList: []
   installList: []
   # - example-fake-plugin-downloadable-url
