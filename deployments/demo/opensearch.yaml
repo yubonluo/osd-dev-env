@@ -1,6 +1,4 @@
 replicas: 2
 
-majorVersion: "2"
-
 image:
   tag: "2.11.0"

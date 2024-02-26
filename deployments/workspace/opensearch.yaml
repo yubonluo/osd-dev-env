@@ -1,7 +1,5 @@
 replicas: 2
 
-majorVersion: "2"
-
 global:
   dockerRegistry: "public.ecr.aws"
 
