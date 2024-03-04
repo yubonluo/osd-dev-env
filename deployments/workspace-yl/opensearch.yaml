@@ -1,0 +1,8 @@
+replicas: 2
+
+global:
+  dockerRegistry: "public.ecr.aws"
+
+image:
+  repository: "r9h9r7k4/opensearch-dev"
+  tag: "8044800373"

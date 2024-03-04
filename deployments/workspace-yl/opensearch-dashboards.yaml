@@ -1,0 +1,13 @@
+replicaCount: 1
+
+global:
+  dockerRegistry: "public.ecr.aws"
+
+image:
+  repository: "r9h9r7k4/opensearch-dashboards-dev"
+  tag: "8044665575"
+
+config:
+  # Default OpenSearch Dashboards configuration from docker image of Dashboards
+  opensearch_dashboards.yml:
+    workspace.enabled: true
