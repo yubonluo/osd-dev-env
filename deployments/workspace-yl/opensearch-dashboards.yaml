@@ -5,7 +5,7 @@ global:
 
 image:
   repository: "r9h9r7k4/opensearch-dashboards-dev"
-  tag: "8187867954"
+  tag: "8188740136"
 
 config:
   # Default OpenSearch Dashboards configuration from docker image of Dashboards
