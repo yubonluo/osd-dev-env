@@ -94,15 +94,15 @@ config:
   # demo certificates from security demo config
   # src/main/java/org/opensearch/security/tools/democonfig/Certificates.java
   esnode.pem: |-
-    <secret:/app/data/demo/cert~esnode.pem>
+    <secret:/app/data/demo/cert~esnode>
   esnode-key.pem: |-
-    <secret:/app/data/demo/cert~esnode-key.pem>
+    <secret:/app/data/demo/cert~esnode-key>
   kirk.pem: |
-    <secret:/app/data/demo/cert~kirk.pem>
+    <secret:/app/data/demo/cert~kirk>
   kirk-key.pem: |
-    <secret:/app/data/demo/cert~kirk-key.pem>
+    <secret:/app/data/demo/cert~kirk-key>
   root-ca.pem: |
-    <secret:/app/data/demo/cert~root-ca.pem>
+    <secret:/app/data/demo/cert~root-ca>
   # log4j2.properties:
 # Extra environment variables to append to this nodeGroup
 # This will be appended to the current 'env:' key. You can use any of the kubernetes env
