@@ -1,11 +1,8 @@
 replicaCount: 1
 
-global:
-  dockerRegistry: "public.ecr.aws"
-
 image:
-  repository: "r9h9r7k4/opensearch-dashboards-dev"
-  tag: "8188740136"
+  repository: "opensearchstaging/opensearch-dashboards"
+  tag: "3.0.0"
 
 config:
   # Default OpenSearch Dashboards configuration from docker image of Dashboards
