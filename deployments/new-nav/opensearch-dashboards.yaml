@@ -5,4 +5,4 @@ global:
 
 image:
   repository: "r9h9r7k4/opensearch-dashboards-dev"
-  tag: "8688910525"
+  tag: "8691006670"
