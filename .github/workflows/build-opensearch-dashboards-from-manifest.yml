@@ -5,6 +5,9 @@ on:
     - cron: '30 16 * * *'
   workflow_dispatch:
     inputs:
+      deployment_name:
+        description: 'The name of the deployment'
+        required: true
       aws_region:
         description: 'AWS region'
         required: false
@@ -51,13 +54,14 @@ jobs:
       AWS_REGION: ${{ github.event.inputs.aws_region || 'us-east-1' }}
       ECR_REGISTRY_ALIAS: ${{ github.event.inputs.ecr_registry_alias || 'r9h9r7k4' }}
       ECR_REPOSITORY: ${{ github.event.inputs.ecr_repository || 'opensearch-dashboards-dev' }}
+      DEPLOYMENT_NAME: ${{ github.event.inputs.deployment_name }}
     steps:
       - uses: actions/checkout@v3
         with:
           path: opensearch-dev-env
       - name: Check if the pipeline should run or not
         run: |
-          if [ -f ./opensearch-dev-env/manifests/opensearch-dashboards.yml ]; then
+          if [ -f ./opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml ]; then
             echo "should_run_workflow=true" >> "$GITHUB_ENV"
           fi
       - uses: actions/checkout@v3
@@ -98,8 +102,8 @@ jobs:
           source $NVM_DIR/nvm.sh
           nvm install ${{ env.NODE_VERSION }}
 
-          if [ -f ../opensearch-dev-env/manifests/opensearch-dashboards.yml ]; then
-            ./build.sh ../opensearch-dev-env/manifests/opensearch-dashboards.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --continue-on-error
+          if [ -f ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml ]; then
+            ./build.sh ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --continue-on-error
             ./assemble.sh tar/builds/opensearch-dashboards/manifest.yml
           fi
       - name: Build and push docker image
@@ -120,9 +124,9 @@ jobs:
           echo "Pushed docker image: $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG"
 
           cd ${{ github.workspace }}/opensearch-dev-env
-          yq -i '.global.dockerRegistry = "${{ env.REGISTRY }}"' ./charts/opensearch-dashboards/values.yaml
-          yq -i '.image.repository = "${{ env.REGISTRY_ALIAS }}/${{ env.REPOSITORY }}"' ./charts/opensearch-dashboards/values.yaml
-          yq -i '.image.tag = "${{ env.IMAGE_TAG }}"' ./charts/opensearch-dashboards/values.yaml
+          yq -i '.global.dockerRegistry = "${{ env.REGISTRY }}"' ./deployments/${{ env.DEPLOYMENT_name }}/opensearch-dashboards.yaml
+          yq -i '.image.repository = "${{ env.REGISTRY_ALIAS }}/${{ env.REPOSITORY }}"' ./deployments/${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
+          yq -i '.image.tag = "${{ env.IMAGE_TAG }}"' ./deployments/${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
       - name: Create pull request
         if: env.should_run_workflow == 'true'
         uses: peter-evans/create-pull-request@v5
