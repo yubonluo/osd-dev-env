@@ -138,4 +138,4 @@ jobs:
           signoff: true
           delete-branch: true
           add-paths: |
-            deployments/${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yml
+            deployments/${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
