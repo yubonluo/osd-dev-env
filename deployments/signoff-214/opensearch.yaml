@@ -2,4 +2,4 @@ replicas: 2
 
 image:
   repository: "opensearchstaging/opensearch"
-  tag: "2.14.0.9792"
+  tag: "2.14.0"
