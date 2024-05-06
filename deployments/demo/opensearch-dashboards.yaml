@@ -1,4 +1,10 @@
 replicaCount: 1
 
 image:
-  tag: "2.12.0"
+  tag: "2.14.0.7624"
+
+config:
+  # Default OpenSearch Dashboards configuration from docker image of Dashboards
+  opensearch_dashboards.yml:
+    workspace.enabled: true
+    savedObjects.permission.enabled: true
