@@ -12,7 +12,7 @@ spec:
               - appName: opensearch
               - appName: opensearch-dashboards
           - git:
-              repoURL: https://github.com/ruanyl/ml-commons-dev-env.git
+              repoURL: https://github.com/ruanyl/osd-dev-env.git
               revision: main
               files:
               - path: "deployments/**/config.json"
@@ -29,7 +29,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/ruanyl/ml-commons-dev-env.git
+        repoURL: https://github.com/ruanyl/osd-dev-env.git
         targetRevision: main
         path: "charts/{{appName}}"
         plugin:
