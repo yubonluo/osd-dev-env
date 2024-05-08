@@ -6,6 +6,9 @@ on:
       deployment_name:
         description: 'The name of the deployment'
         required: true
+      version:
+        description: 'The version of OpenSearch-Dashboards'
+        required: true
       node_version:
         description: 'Nodejs version'
         required: false
@@ -16,6 +19,7 @@ jobs:
     env:
       PYTHON_VERSION: '3.9'
       NODE_VERSION: ${{ github.event.inputs.node_version || '18.19.0' }}
+      VERSION: ${{ github.event.inputs.version }}
       ARCH: 'x64'
       PLATFORM: 'linux'
       AWS_REGION: 'us-east-1'
@@ -70,7 +74,7 @@ jobs:
           REPOSITORY: ${{ env.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ github.run_id }}
         run: |
-          artifact_name=opensearch-dashboards-${{ env.PLATFORM }}-${{ env.ARCH }}.tar.gz
+          artifact_name=opensearch-dashboards-${{env.VERSION}}-${{ env.PLATFORM }}-${{ env.ARCH }}.tar.gz
           tarball=$(realpath opensearch-build/tar/dist/opensearch-dashboards/$artifact_name)
           cd ./opensearch-build/docker/release
           ./build-image-single-arch.sh -v $IMAGE_TAG -p opensearch-dashboards -a ${{ env.ARCH }} -f ./dockerfiles/opensearch-dashboards.al2023.dockerfile -t $tarball
