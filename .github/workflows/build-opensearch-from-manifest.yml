@@ -1,43 +1,11 @@
 name: Build OpenSearch from manifest
 
 on:
-  schedule:
-    - cron: '30 16 * * *'
   workflow_dispatch:
     inputs:
-      aws_region:
-        description: 'AWS region'
+      deployment_name:
+        description: 'The name of the deployment'
         required: true
-        default: 'us-east-1'
-      ecr_registry_alias:
-        description: 'ECR registry alias'
-        required: true
-        default: 'r9h9r7k4'
-      ecr_repository:
-        description: 'ECR repository'
-        required: true
-        default: 'opensearch-dev'
-      target_version:
-        description: 'Which version of OpenSearch that this build is targeting'
-        required: true
-        default: '3.0.0'
-      architecture:
-        description: 'Choose architecture'
-        type: choice
-        required: true
-        default: 'x64'
-        options:
-        - x64
-        - arm64
-      platform:
-        description: 'Choose platform'
-        type: choice
-        required: true
-        default: 'linux'
-        options:
-        - linux
-        - darwin
-        - windows
       snapshot:
         description: 'Build SNAPSHOT'
         type: boolean
@@ -50,38 +18,29 @@ jobs:
     env:
       PYTHON_VERSION: 3.9
       JDK_VERSION: 17
-      TARGET_VERSION: ${{ github.event.inputs.snapshot && format('{0}-SNAPSHOT', github.event.inputs.target_version) || github.event.inputs.target_version }}
-      ARCH: ${{ github.event.inputs.architecture || 'x64' }}
-      PLATFORM: ${{ github.event.inputs.platform || 'linux' }}
-      AWS_REGION: ${{ github.event.inputs.aws_region }}
-      ECR_REGISTRY_ALIAS: ${{ github.event.inputs.ecr_registry_alias }}
-      ECR_REPOSITORY: ${{ github.event.inputs.ecr_repository }}
+      ARCH: 'x64'
+      PLATFORM: 'linux'
+      AWS_REGION: 'us-east-1'
+      ECR_REGISTRY_ALIAS: 'r9h9r7k4'
+      ECR_REPOSITORY: 'opensearch-dev'
+      DEPLOYMENT_NAME: ${{ github.event.inputs.deployment_name }}
     steps:
       - uses: actions/checkout@v3
         with:
           path: opensearch-dev-env
-      - name: Check if the pipeline should run or not
-        run: |
-          if [ -f ./opensearch-dev-env/manifests/opensearch.yml ]; then
-            echo "should_run_workflow=true" >> "$GITHUB_ENV"
-          fi
       - uses: actions/checkout@v3
-        if: env.should_run_workflow == 'true'
         with:
           repository: opensearch-project/opensearch-build
           path: opensearch-build
       - name: Set Up JDK ${{ env.JDK_VERSION }}
-        if: env.should_run_workflow == 'true'
         uses: actions/setup-java@v1
         with:
           java-version: ${{ env.JDK_VERSION }}
       - name: Set up Python ${{ env.PYTHON_VERSION }}
-        if: env.should_run_workflow == 'true'
         uses: actions/setup-python@v3
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Install Dependencies
-        if: env.should_run_workflow == 'true'
         run: |
           python -m pip install --upgrade pipenv wheel
           sudo apt-get install libopenblas-dev gfortran -y
@@ -90,33 +49,31 @@ jobs:
           sudo chmod a+x /usr/local/bin/yq
           /usr/local/bin/yq --version
       - name: Configure AWS credentials
-        if: env.should_run_workflow == 'true'
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
       - name: Login to Amazon ECR
-        if: env.should_run_workflow == 'true'
         id: login-ecr-public
         uses: aws-actions/amazon-ecr-login@v1
         with:
           registry-type: public
       - name: Build and assemble
-        if: env.should_run_workflow == 'true'
         run: |
           cd opensearch-build
-          ./build.sh ../opensearch-dev-env/manifests/opensearch.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} ${{ github.event.inputs.snapshot && '--snapshot' }}
-          ./assemble.sh tar/builds/opensearch/manifest.yml
+          if [ -f ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml ]; then
+            ./build.sh ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} ${{ github.event.inputs.snapshot && '--snapshot' }}
+            ./assemble.sh tar/builds/opensearch/manifest.yml
+          fi
       - name: Build and push docker image
-        if: env.should_run_workflow == 'true'
         env:
           REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
           REGISTRY_ALIAS: ${{ env.ECR_REGISTRY_ALIAS }}
           REPOSITORY: ${{ env.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ github.run_id }}
         run: |
-          artifact_name=opensearch-${{ env.TARGET_VERSION}}-${{ env.PLATFORM }}-${{ env.ARCH }}.tar.gz
+          artifact_name=opensearch-${{ env.PLATFORM }}-${{ env.ARCH }}.tar.gz
           tarball=$(realpath opensearch-build/tar/dist/opensearch/$artifact_name)
           cd ./opensearch-build/docker/release
           ./build-image-single-arch.sh -v $IMAGE_TAG -p opensearch -a ${{ env.ARCH }} -f ${{ github.workspace }}/opensearch-dev-env/docker/opensearch.dockerfile -t $tarball
@@ -126,11 +83,10 @@ jobs:
           echo "Pushed docker image: $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG"
 
           cd ${{ github.workspace }}/opensearch-dev-env
-          yq -i '.global.dockerRegistry = "${{ env.REGISTRY }}"' ./charts/opensearch/values.yaml
-          yq -i '.image.repository = "${{ env.REGISTRY_ALIAS }}/${{ env.REPOSITORY }}"' ./charts/opensearch/values.yaml
-          yq -i '.image.tag = "${{ env.IMAGE_TAG }}"' ./charts/opensearch/values.yaml
+          yq -i '.global.dockerRegistry = "${{ env.REGISTRY }}"' ./deployments/${{ env.DEPLOYMENT_NAME }}/opensearch.yaml
+          yq -i '.image.repository = "${{ env.REGISTRY_ALIAS }}/${{ env.REPOSITORY }}"' ./deployments/${{ env.DEPLOYMENT_NAME }}/opensearch.yaml
+          yq -i '.image.tag = "${{ env.IMAGE_TAG }}"' ./deployments/${{ env.DEPLOYMENT_NAME }}/opensearch.yaml
       - name: Create pull request
-        if: env.should_run_workflow == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
           path: opensearch-dev-env
@@ -140,4 +96,4 @@ jobs:
           signoff: true
           delete-branch: true
           add-paths: |
-            charts/opensearch/values.yaml
+            deployments/${{ env.DEPLOYMENT_NAME }}/opensearch.yaml
