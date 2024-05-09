@@ -63,11 +63,11 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: opensearchstaging/ci-runner:ci-runner-centos7-opensearch-build-v3
-          options: -v ${{ github.workspace }}:/var/workspace
+          options: -v ${{ github.workspace }}:/home/ci-runner/workspace
           run: |
             ls -l
             pwd
-            cd opensearch-build
+            cd /home/ci-runner/workspace/opensearch-build
             if [ -f ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml ]; then
               ./build.sh ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} ${{ env.SNAPSHOT == 'true' && '--snapshot' }}
               ./assemble.sh tar/builds/opensearch/manifest.yml
