@@ -60,7 +60,10 @@ jobs:
         with:
           registry-type: public
       - name: Build and assemble
+        uses: docker://public.ecr.aws/opensearchstaging/ci-runner:ci-runner-centos7-opensearch-build-v3
         run: |
+          ls -l
+          pwd
           cd opensearch-build
           if [ -f ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml ]; then
             ./build.sh ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} ${{ env.SNAPSHOT == 'true' && '--snapshot' }}
