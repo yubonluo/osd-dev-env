@@ -65,6 +65,9 @@ jobs:
           image: opensearchstaging/ci-runner:ci-runner-centos7-opensearch-build-v3
           options: -v ${{ github.workspace }}:/home/ci-runner/workspace
           run: |
+            id -u
+            cd /home/ci-runner/workspace
+            ls -l
             cd /home/ci-runner/workspace/opensearch-build
             ls -l
             if [ -f ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml ]; then
