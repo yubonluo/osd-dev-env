@@ -60,6 +60,10 @@ jobs:
         with:
           registry-type: public
       - name: Build and assemble
+        run: |
+          ls -l
+          whoami
+      - name: Build and assemble
         uses: addnab/docker-run-action@v3
         with:
           image: opensearchstaging/ci-runner:ci-runner-centos7-opensearch-build-v3
