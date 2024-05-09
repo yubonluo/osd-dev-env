@@ -66,6 +66,7 @@ jobs:
           options: -v ${{ github.workspace }}:/home/ci-runner/workspace
           run: |
             id -u
+            whoami
             cd /home/ci-runner/workspace
             ls -l
             cd /home/ci-runner/workspace/opensearch-build
