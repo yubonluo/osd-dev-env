@@ -24,6 +24,11 @@ jobs:
       DEPLOYMENT_NAME: ${{ github.event.inputs.deployment_name }}
       SNAPSHOT: ${{ endsWith(github.event.inputs.version, 'SNAPSHOT') && 'true' || 'false' }}
       VERSION: ${{ github.event.inputs.version }}
+    container:
+      image: public.ecr.aws/opensearchstaging/ci-runner:ci-runner-centos7-opensearch-build-v3
+      volumes:
+        - ${{ github.workspace }}:/var/workspace
+      options: --workdir /var/workspace
     steps:
       - uses: actions/checkout@v3
         with:
@@ -42,12 +47,14 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Install Dependencies
         run: |
-          python -m pip install --upgrade pipenv wheel
-          sudo apt-get install libopenblas-dev gfortran -y
+          ls -l
+          pwd
+          # python -m pip install --upgrade pipenv wheel
+          # sudo apt-get install libopenblas-dev gfortran -y
 
-          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
-          sudo chmod a+x /usr/local/bin/yq
-          /usr/local/bin/yq --version
+          # sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          # sudo chmod a+x /usr/local/bin/yq
+          # /usr/local/bin/yq --version
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -60,7 +67,6 @@ jobs:
         with:
           registry-type: public
       - name: Build and assemble
-        uses: docker://public.ecr.aws/opensearchstaging/ci-runner:ci-runner-centos7-opensearch-build-v3
         run: |
           ls -l
           pwd
