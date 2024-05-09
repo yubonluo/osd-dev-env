@@ -60,20 +60,17 @@ jobs:
         with:
           registry-type: public
       - name: Build and assemble
-        run: |
-          ls -l
-          whoami
-      - name: Build and assemble
         uses: addnab/docker-run-action@v3
         with:
           image: opensearchstaging/ci-runner:ci-runner-centos7-opensearch-build-v3
           options: -v ${{ github.workspace }}:/home/ci-runner/workspace
           run: |
-            id -u
-            whoami
-            cd /home/ci-runner/workspace
+            id
+            cp -R workspace workspace_tmp
+            chown -Rv 1000:1000 workspace_tmp
+            cd /home/ci-runner/workspace_tmp
             ls -l
-            cd /home/ci-runner/workspace/opensearch-build
+            cd /home/ci-runner/workspace_tmp/opensearch-build
             ls -l
             if [ -f ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml ]; then
               ./build.sh ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} ${{ env.SNAPSHOT == 'true' && '--snapshot' }}
