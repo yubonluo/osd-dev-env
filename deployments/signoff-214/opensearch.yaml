@@ -3,3 +3,9 @@ replicas: 2
 image:
   repository: "opensearchproject/opensearch"
   tag: "2.14.0"
+
+config:
+  opensearch.yml:
+    plugins:
+      ml_commons:
+        agent_framework_enabled: true
