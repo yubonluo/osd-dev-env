@@ -7,10 +7,15 @@ config:
   opensearch_dashboards.yml:
     workspace.enabled: true
     savedObjects.permission.enabled: true
-extraEnvs:
-  - name: ACCESS_KEY_ID
-    value: <secret:/app/data/demo/aws_access~ACCESS_KEY_ID>
-  - name: SECRET_ACCESS_KEY
-    value: <secret:/app/data/demo/aws_access~SECRET_ACCESS_KEY>
 global:
   dockerRegistry: public.ecr.aws
+
+ingress:
+  annotations:
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+  hosts:
+    - host: poc.ruanyl.people.aws.dev
+      paths:
+        - path: /
+          backend: {}
