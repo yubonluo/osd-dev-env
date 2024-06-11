@@ -7,3 +7,4 @@ config:
   opensearch_dashboards.yml:
     workspace.enabled: true
     savedObjects.permission.enabled: true
+    opensearchDashboards.dashboardAdmin.users: ["admin"]
