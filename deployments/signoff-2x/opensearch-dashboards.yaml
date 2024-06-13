@@ -8,3 +8,4 @@ config:
     workspace.enabled: true
     savedObjects.permission.enabled: true
     opensearchDashboards.dashboardAdmin.users: ["admin"]
+    assistant.chat.enabled: true
