@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: "opensearchstaging/opensearch-dashboards"
-  tag: "2.15.0.7731"
+  tag: "2.15.0.7735"
 config:
   # Default OpenSearch Dashboards configuration from docker image of Dashboards
   opensearch_dashboards.yml:
