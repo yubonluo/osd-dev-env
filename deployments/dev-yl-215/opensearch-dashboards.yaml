@@ -1,0 +1,3 @@
+image:
+  repository: "opensearchstaging/opensearch-dashboards"
+  tag: "2.15.0.7742"

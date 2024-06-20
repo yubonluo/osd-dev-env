@@ -1,0 +1,3 @@
+image:
+  repository: "opensearchstaging/opensearch"
+  tag: "2.15.0.9989"
