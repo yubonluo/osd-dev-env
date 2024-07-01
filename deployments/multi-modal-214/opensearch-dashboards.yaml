@@ -1,0 +1,4 @@
+replicaCount: 1
+image:
+  repository: 'opensearchproject/opensearch'
+  tag: '2.14.0'
