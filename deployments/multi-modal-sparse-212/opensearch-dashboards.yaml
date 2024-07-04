@@ -1,0 +1,11 @@
+replicaCount: 1
+image:
+  repository: 'opensearchproject/opensearch-dashboards'
+  tag: '2.12.0'
+
+plugins:
+  enabled: true
+  removeList:
+    - searchRelevanceDashboards
+  installList:
+    - https://github.com/ruanyl/opensearch-dev-env/releases/download/searchRelevanceDashboards-2.12.0/searchRelevanceDashboards-2.12.0.zip
