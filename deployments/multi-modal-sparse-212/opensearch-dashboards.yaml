@@ -3,6 +3,11 @@ image:
   repository: 'opensearchproject/opensearch-dashboards'
   tag: '2.12.0'
 
+config:
+  # Default OpenSearch Dashboards configuration from docker image of Dashboards
+  opensearch_dashboards.yml:
+    data_source.enabled: false
+
 plugins:
   enabled: true
   removeList:
