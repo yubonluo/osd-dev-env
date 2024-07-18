@@ -9,3 +9,10 @@ config:
     plugins:
       ml_commons:
         agent_framework_enabled: true
+
+plugins:
+  enabled: true
+  removeList:
+  - opensearch-ml
+  installList:
+  - https://github.com/ruanyl/osd-dev-env/releases/download/opensearch-ml-2.14.0.0-fix/opensearch-ml-2.14.0.0-SNAPSHOT.zip
