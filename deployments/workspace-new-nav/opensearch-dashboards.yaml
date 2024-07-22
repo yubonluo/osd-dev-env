@@ -7,5 +7,6 @@ config:
   opensearch_dashboards.yml:
     workspace.enabled: true
     savedObjects.permission.enabled: true
+    opensearchDashboards.dashboardAdmin.groups: ["admin"]
 global:
   dockerRegistry: public.ecr.aws
