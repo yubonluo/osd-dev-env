@@ -1,20 +1,11 @@
 replicas: 2
 
 image:
-  repository: "opensearchproject/opensearch"
-  tag: "2.14.0"
+  repository: "opensearchstaging/opensearch"
+  tag: "2.16.0.10124"
 
 config:
   opensearch.yml:
     plugins:
       ml_commons:
         agent_framework_enabled: true
-
-plugins:
-  enabled: true
-  removeList:
-  - opensearch-skills
-  - opensearch-ml
-  installList:
-  - https://github.com/ruanyl/osd-dev-env/releases/download/opensearch-ml-2.14.0.0-fix/opensearch-ml-2.14.0.0-SNAPSHOT.zip
-  - https://aws.oss.sonatype.org/content/repositories/snapshots/org/opensearch/plugin/opensearch-skills/2.14.0.0-SNAPSHOT/opensearch-skills-2.14.0.0-20240501.211329-2.zip

@@ -1,16 +1,16 @@
 replicaCount: 1
 image:
-  repository: "r9h9r7k4/opensearch-dashboards-dev"
-  tag: "9401921187"
+  repository: "opensearchstaging/opensearch-dashboards"
+  tag: "2.16.0.7843"
 config:
   # Default OpenSearch Dashboards configuration from docker image of Dashboards
   opensearch_dashboards.yml:
     workspace.enabled: true
     savedObjects.permission.enabled: true
     assistant.chat.enabled: true
+    assistant.next.enabled: true
+    assistant.incontextInsight.enabled: true
     observability.query_assist.enabled: true
-global:
-  dockerRegistry: public.ecr.aws
 ingress:
   annotations:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
