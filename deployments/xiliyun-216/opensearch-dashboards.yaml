@@ -11,5 +11,14 @@ config:
     assistant.next.enabled: true
     assistant.incontextInsight.enabled: true
     observability.query_assist.enabled: true
+ingress:
+  annotations:
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+  hosts:
+    - host: poc.xiliyun.people.aws.dev
+      paths:
+        - path: /
+          backend: {}
 global:
   dockerRegistry: public.ecr.aws
