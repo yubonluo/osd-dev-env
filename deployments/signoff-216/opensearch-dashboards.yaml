@@ -12,3 +12,12 @@ config:
     assistant.next.enabled: true
     assistant.incontextInsight.enabled: true
     observability.query_assist.enabled: true
+
+plugins:
+  enabled: true
+  removeList:
+    - alertingDashboards
+    - assistantDashboards
+  installList:
+    - https://github.com/ruanyl/osd-dev-env/releases/download/alertAnalysis-2.16.0/alertingDashboards-2.16.0.0.zip
+    - https://github.com/ruanyl/osd-dev-env/releases/download/alertAnalysis-2.16.0/assistantDashboards-2.16.0.zip

@@ -9,3 +9,12 @@ config:
     plugins:
       ml_commons:
         agent_framework_enabled: true
+
+plugins:
+  enabled: true
+  removeList:
+    - opensearch-skills
+    - opensearch-ml
+  installList:
+    - https://github.com/ruanyl/osd-dev-env/releases/download/alertAnalysis-2.16.0/opensearch-ml-2.16.0.0-SNAPSHOT.zip
+    - https://github.com/ruanyl/osd-dev-env/releases/download/alertAnalysis-2.16.0/opensearch-skills-2.16.0.0-SNAPSHOT.zip
