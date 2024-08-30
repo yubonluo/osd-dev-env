@@ -1,0 +1,21 @@
+replicaCount: 1
+image:
+  repository: "opensearchproject/opensearch-dashboards"
+  tag: "2.16.0"
+config:
+  # Default OpenSearch Dashboards configuration from docker image of Dashboards
+  opensearch_dashboards.yml:
+    workspace.enabled: true
+    savedObjects.permission.enabled: true
+    opensearchDashboards.dashboardAdmin.users: ["admin"]
+    assistant.chat.enabled: true
+    assistant.next.enabled: true
+    assistant.incontextInsight.enabled: true
+    observability.query_assist.enabled: true
+
+plugins:
+  enabled: true
+  removeList:
+    - assistantDashboards
+  installList:
+    - https://github.com/ruanyl/osd-dev-env/releases/download/vizSummary-2.16.0/assistantDashboards-2.16.0.zip
