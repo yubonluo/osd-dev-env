@@ -8,9 +8,11 @@ config:
     workspace.enabled: true
     savedObjects.permission.enabled: true
     opensearchDashboards.dashboardAdmin.users: ["admin"]
-    assistant.chat.enabled: true
+    assistant.enabled: true
+    assistant.chat.enabled: false
     assistant.next.enabled: true
     assistant.incontextInsight.enabled: true
+    assistant.text2viz.enabled: true
     observability.query_assist.enabled: true
 
 plugins:
