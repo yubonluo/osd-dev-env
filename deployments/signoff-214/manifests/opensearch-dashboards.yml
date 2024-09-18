@@ -54,4 +54,4 @@ components:
     ref: '2.17'
   - name: assistantDashboards
     repository: https://github.com/ruanyl/dashboards-assistant.git
-    ref: 'text-to-visualization-2.17'
+    ref: 'poc-2.17'
