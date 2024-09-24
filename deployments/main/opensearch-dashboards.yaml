@@ -1,7 +1,8 @@
 replicaCount: 1
 image:
-  repository: "r9h9r7k4/opensearch-dashboards-dev"
-  tag: "11009288252"
+  repository: "opensearchstaging/opensearch-dashboards"
+  tag: "3.0.0"
+  pullPolicy: "Always"
 config:
   # Default OpenSearch Dashboards configuration from docker image of Dashboards
   opensearch_dashboards.yml:
