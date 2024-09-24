@@ -1,0 +1,15 @@
+name: Build OSD main on schedule
+
+on:
+  schedule:
+    - cron: 0 */8 * * *
+
+jobs:
+  build-opensearch-dashboards:
+    uses: ./.github/workflows/build-opensearch-dashboards.yml
+    with:
+      deployment_name: 'main'
+      version: '3.0.0'
+    secrets:
+      aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
