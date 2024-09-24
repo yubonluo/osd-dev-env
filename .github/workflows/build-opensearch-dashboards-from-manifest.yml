@@ -20,3 +20,6 @@ jobs:
       deployment_name: ${{ github.event.inputs.deployment_name }}
       version: ${{ github.event.inputs.version }}
       node_version: ${{ github.event.inputs.node_version }}
+    secrets:
+      aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
