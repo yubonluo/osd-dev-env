@@ -15,7 +15,6 @@ config:
     assistant.smartAnomalyDetector.enabled: true
     assistant.incontextInsight.enabled: true
     queryEnhancements.queryAssist.summary.enabled: true
-    observability.query_assist.enabled: true
 ingress:
   annotations:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
