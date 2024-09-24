@@ -1,4 +1,4 @@
-name: Build OpenSearch-Dashboards from manifest
+name: Build OSD from manifest
 
 on:
   workflow_call:
