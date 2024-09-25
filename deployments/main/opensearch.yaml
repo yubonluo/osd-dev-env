@@ -10,3 +10,9 @@ config:
     plugins:
       ml_commons:
         agent_framework_enabled: true
+
+plugins:
+  enabled: true
+  removeList: []
+  installList:
+    - https://github.com/ruanyl/osd-dev-env/releases/download/opensearch-skills-3.0.0.0-SNAPSHOT.09251805/opensearch-skills-3.0.0.0-SNAPSHOT.zip
