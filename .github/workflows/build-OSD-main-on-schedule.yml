@@ -1,6 +1,7 @@
 name: Build OSD main on schedule
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: 0 */8 * * *
 
