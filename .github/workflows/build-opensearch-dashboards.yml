@@ -27,14 +27,14 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PYTHON_VERSION: '3.9'
-      NODE_VERSION: ${{ github.event.inputs.node_version || '18.19.0' }}
-      VERSION: ${{ github.event.inputs.version }}
+      NODE_VERSION: ${{ inputs.node_version || '18.19.0' }}
+      VERSION: ${{ inputs.version }}
       ARCH: 'x64'
       PLATFORM: 'linux'
       AWS_REGION: 'us-east-1'
       ECR_REGISTRY_ALIAS: 'r9h9r7k4'
       ECR_REPOSITORY: 'opensearch-dashboards-dev'
-      DEPLOYMENT_NAME: ${{ github.event.inputs.deployment_name }}
+      DEPLOYMENT_NAME: ${{ inputs.deployment_name }}
     steps:
       - uses: actions/checkout@v3
         with:
