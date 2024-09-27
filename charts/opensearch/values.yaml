@@ -495,8 +495,8 @@ securityConfig:
         ## Demo users
 
         admin:
-          hash: "$2y$12$Az8IPPWyx6iUfI97oBeAQeS8CaJSi.pOaCjCEK4GIGSxgisP3iJSK"
-          reserved: true
+          hash: "$2y$12$ujoA96/LrmjP1guK7whWLeu7JPQ5l3z.4Pn8F7Rtumr/MYDxlCRZy"
+          reserved: false
           backend_roles:
           - "admin"
           description: "Demo admin user"
