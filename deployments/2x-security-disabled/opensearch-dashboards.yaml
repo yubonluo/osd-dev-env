@@ -16,14 +16,5 @@ config:
     assistant.smartAnomalyDetector.enabled: true
     assistant.incontextInsight.enabled: true
     queryEnhancements.queryAssist.summary.enabled: true
-ingress:
-  annotations:
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
-    alb.ingress.kubernetes.io/ssl-redirect: '443'
-  hosts:
-    - host: 2x.ruanyl.people.aws.dev
-      paths:
-        - path: /
-          backend: {}
 global:
   dockerRegistry: public.ecr.aws
