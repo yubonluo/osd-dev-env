@@ -17,6 +17,5 @@ plugins:
   enabled: true
   removeList:
     - opensearch-skills
-    - opensearch-security
   installList:
     - https://github.com/ruanyl/osd-dev-env/releases/download/opensearch-skills-3.0.0.0-SNAPSHOT.09251805/opensearch-skills-2.18.0.0-SNAPSHOT.zip

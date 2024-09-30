@@ -19,7 +19,3 @@ config:
     queryEnhancements.queryAssist.summary.enabled: true
 global:
   dockerRegistry: public.ecr.aws
-plugins:
-  enabled: true
-  removeList:
-    - securityDashboards
