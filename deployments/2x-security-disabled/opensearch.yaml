@@ -8,7 +8,7 @@ config:
   opensearch.yml:
     plugins:
       security:
-        enabled: false
+        disabled: true
       ml_commons:
         agent_framework_enabled: true
 plugins:
