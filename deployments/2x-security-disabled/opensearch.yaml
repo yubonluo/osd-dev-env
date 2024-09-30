@@ -19,3 +19,16 @@ plugins:
     - opensearch-skills
   installList:
     - https://github.com/ruanyl/osd-dev-env/releases/download/opensearch-skills-3.0.0.0-SNAPSHOT.09251805/opensearch-skills-2.18.0.0-SNAPSHOT.zip
+
+ingress:
+  enabled: true
+  ingressClassName: alb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    # WARNING: HTTPS should be enabled for production deployment
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+  labels: {}
+  path: /
+  hosts: [""]
