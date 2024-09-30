@@ -19,3 +19,4 @@ config:
     queryEnhancements.queryAssist.summary.enabled: true
 global:
   dockerRegistry: public.ecr.aws
+opensearchHosts: "http://opensearch-cluster-master:9200"
