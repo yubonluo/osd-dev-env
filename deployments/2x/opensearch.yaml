@@ -10,3 +10,7 @@ config:
     plugins:
       ml_commons:
         agent_framework_enabled: true
+plugins:
+  enabled: true
+  removeList:
+    - opensearch-security-analytics
