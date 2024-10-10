@@ -1,9 +1,8 @@
 replicas: 2
 
 image:
-  repository: "opensearchstaging/opensearch"
-  tag: "3.0.0"
-  pullPolicy: "Always"
+  repository: "opensearchproject/opensearch-dashboards"
+  tag: "2.17.1"
 
 config:
   opensearch.yml:
