@@ -5,6 +5,7 @@ image:
 config:
   # Default OpenSearch Dashboards configuration from docker image of Dashboards
   opensearch_dashboards.yml:
+    opensearchDashboards.dashboardAdmin.users: ["admin"]
     workspace.enabled: true
     savedObjects.permission.enabled: true
     assistant.enabled: true
@@ -15,3 +16,6 @@ config:
     assistant.smartAnomalyDetector.enabled: true
     assistant.incontextInsight.enabled: true
     queryEnhancements.queryAssist.summary.enabled: true
+    uiSettings:
+      overrides:
+        "home:useNewHomePage": true
