@@ -75,9 +75,21 @@ config:
         restapi:
           roles_enabled: ["all_access", "security_rest_api_access"]
         system_indices:
-          enabled: false
+          enabled: true
           indices:
             [
+              ".plugins-ml-agent",
+              ".plugins-ml-config",
+              ".plugins-ml-connector",
+              ".plugins-ml-controller",
+              ".plugins-ml-model-group",
+              ".plugins-ml-model",
+              ".plugins-ml-task",
+              ".plugins-ml-conversation-meta",
+              ".plugins-ml-conversation-interactions",
+              ".plugins-ml-memory-meta",
+              ".plugins-ml-memory-message",
+              ".plugins-ml-stop-words",
               ".opendistro-alerting-config",
               ".opendistro-alerting-alert*",
               ".opendistro-anomaly-results*",
@@ -85,9 +97,17 @@ config:
               ".opendistro-anomaly-checkpoints",
               ".opendistro-anomaly-detection-state",
               ".opendistro-reports-*",
-              ".opendistro-notifications-*",
-              ".opendistro-notebooks",
+              ".opensearch-notifications-*",
+              ".opensearch-notebooks",
+              ".opensearch-observability",
+              ".ql-datasources",
               ".opendistro-asynchronous-search-response*",
+              ".replication-metadata-store",
+              ".opensearch-knn-models",
+              ".geospatial-ip2geo-data*",
+              ".plugins-flow-framework-config",
+              ".plugins-flow-framework-templates",
+              ".plugins-flow-framework-state",
             ]
     ######## End OpenSearch Security Demo Configuration ########
 
