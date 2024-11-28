@@ -15,6 +15,7 @@ config:
     assistant.smartAnomalyDetector.enabled: true
     assistant.incontextInsight.enabled: true
     queryEnhancements.queryAssist.summary.enabled: true
+    opensearch_security_analytics.enabled: false
     uiSettings:
       overrides:
         "home:useNewHomePage": true
