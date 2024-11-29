@@ -9,3 +9,6 @@ config:
     plugins:
       ml_commons:
         agent_framework_enabled: true
+      security:
+        system_indices:
+          enabled: false
