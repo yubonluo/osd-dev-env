@@ -5,8 +5,17 @@ image:
   tag: "3.0.0"
   pullPolicy: "Always"
 
-config:
-  opensearch.yml:
-    plugins:
-      ml_commons:
-        agent_framework_enabled: true
+securityConfig:
+  config:
+    data:
+      whitelist.yml: |
+        _meta:
+          type: "whitelist"
+          config_version: 2
+        config:
+          enabled: false
+          requests:
+            /_cluster/settings:
+              - GET
+            /_cat/nodes:
+              - GET
