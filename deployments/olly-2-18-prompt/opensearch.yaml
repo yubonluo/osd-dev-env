@@ -1,8 +1,9 @@
 replicas: 2
 
 image:
-  repository: "opensearchproject/opensearch"
-  tag: "2.18.0"
+  repository: "opensearchstaging/opensearch"
+  tag: "2.19.0"
+  pullPolicy: "Always"
 
 config:
   opensearch.yml:
