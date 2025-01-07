@@ -8,7 +8,7 @@ config:
   opensearch.yml:
     plugins:
       security:
-        system_indices.enabled: true
+        system_indices.enabled: false
       ml_commons:
         agent_framework_enabled: true
 plugins:
