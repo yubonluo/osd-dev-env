@@ -15,7 +15,9 @@ GitOps environment repo for OpenSearch and OpenSearch-Dashboards development
 
 If you wish to build the cluster with the latest code, you should do a few extra steps to deploy the cluster:
 1. You can refer to yaml files from opensearch build repo. For example, this is the [yml file](https://github.com/opensearch-project/opensearch-build/blob/main/manifests/2.19.0/opensearch-dashboards-2.19.0.yml) for 2.19.0 opensearch dashboards.
-2. Go to `Actions` and select `Build OSD Manually`, and then initiate a workflow as is shown in the following figure. Upon workflow completion, A PR will be generated automatically and you need to manually merge this PR.
+2. Go to `Actions` and select `Build OSD Manually`, and then initiate a workflow as is shown in the following figure. Upon workflow completion, A PR will be generated automatically. By manually merge this PR, your cluster will be updated with the latest built image.
+
+![image (7)](https://github.com/user-attachments/assets/75421b7a-1899-4611-ac27-251631826bf6)
 
 ## Roadmap
 - [x] support build OpenSearch-Dashboards from source
