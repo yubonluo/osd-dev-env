@@ -13,6 +13,9 @@ securityConfig:
           type: "whitelist"
           config_version: 2
         config:
+          dynamic:
+            kibana:
+              multitenancy_enabled: false
           enabled: false
           requests:
             /_cluster/settings:
