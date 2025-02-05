@@ -8,14 +8,15 @@ image:
 securityConfig:
   config:
     data:
+      config.yml: |
+        config:
+          dynamic:
+            kibana:
+              multitenancy_enabled: true
       whitelist.yml: |
         _meta:
           type: "whitelist"
           config_version: 2
-        config:
-          dynamic:
-            kibana:
-              multitenancy_enabled: false
           enabled: false
           requests:
             /_cluster/settings:
