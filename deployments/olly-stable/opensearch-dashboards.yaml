@@ -19,3 +19,9 @@ config:
     uiSettings:
       overrides:
         "home:useNewHomePage": true
+plugins:
+  enabled: true
+  removeList:
+    - assistantDashboards
+  installList:
+    - https://github.com/ruanyl/osd-dev-env/releases/download/dashboards-assistant-2.19/assistantDashboards-2.19.0.zip
