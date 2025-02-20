@@ -24,4 +24,4 @@ plugins:
   removeList:
     - assistantDashboards
   installList:
-    - https://github.com/ruanyl/osd-dev-env/releases/download/dashboards-assistant-2.19/assistantDashboards-2.19.0.zip
+    - https://github.com/ruanyl/osd-dev-env/releases/download/dashboards-assistant-2.19-1/assistantDashboards-2.19.0.zip
