@@ -31,9 +31,3 @@ ingress:
           backend: {}
 global:
   dockerRegistry: public.ecr.aws
-plugins:
-  enabled: true
-  removeList:
-    - assistantDashboards
-  installList:
-    - https://github.com/ruanyl/osd-dev-env/releases/download/assistantDashboards-3.0.0/assistantDashboards-3.0.0.zip
