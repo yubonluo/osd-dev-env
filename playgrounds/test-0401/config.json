@@ -1,6 +1,3 @@
 {
-  "owner": "ruanyl@amazon.com",
-  "cluster": {
-    "name": "development"
-  }
+  "owner": "ruanyl@amazon.com"
 }
