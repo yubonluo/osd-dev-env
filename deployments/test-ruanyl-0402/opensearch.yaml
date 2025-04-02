@@ -1,0 +1,7 @@
+replicas: 2
+
+image:
+  repository: "opensearchstaging/opensearch"
+  tag: "2.19.0"
+  pullPolicy: "Always"
+
