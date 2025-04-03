@@ -19,3 +19,7 @@ securityConfig:
               - GET
             /_cat/nodes:
               - GET
+plugins:
+  enabled: true
+  installList:
+    - opensearch-sql
