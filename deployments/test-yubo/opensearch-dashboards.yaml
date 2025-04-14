@@ -12,3 +12,5 @@ config:
     uiSettings:
       overrides:
         "home:useNewHomePage": true
+global:
+  dockerRegistry: public.ecr.aws
