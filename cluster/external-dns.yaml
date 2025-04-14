@@ -1,0 +1,8 @@
+provider:
+  name: aws
+serviceAccount:
+  create: false
+  name: external-dns
+env:
+  - name: AWS_DEFAULT_REGION
+    value: us-east-1

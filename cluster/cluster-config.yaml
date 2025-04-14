@@ -1,0 +1,80 @@
+# Example config: https://github.com/eksctl-io/eksctl/tree/main/examples
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: opensearch-playground
+  region: us-east-1
+  version: "1.31"
+
+iam:
+  withOIDC: true
+  serviceAccounts:
+    - metadata:
+        name: aws-load-balancer-controller
+        namespace: kube-system
+      wellKnownPolicies:
+        awsLoadBalancerController: true
+    - metadata:
+        name: external-dns
+        namespace: kube-system
+      wellKnownPolicies:
+        externalDNS: true
+    - metadata:
+        name: cluster-autoscaler
+        namespace: kube-system
+        labels: { aws-usage: "cluster-ops" }
+      wellKnownPolicies:
+        autoScaler: true
+    - metadata:
+        name: autoscaler-service
+        namespace: kube-system
+      attachPolicy: # inline policy can be defined along with `attachPolicyARNs`
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - "autoscaling:DescribeAutoScalingGroups"
+              - "autoscaling:DescribeAutoScalingInstances"
+              - "autoscaling:DescribeLaunchConfigurations"
+              - "autoscaling:DescribeTags"
+              - "autoscaling:SetDesiredCapacity"
+              - "autoscaling:TerminateInstanceInAutoScalingGroup"
+              - "ec2:DescribeLaunchTemplateVersions"
+            Resource: "*"
+
+availabilityZones: ["us-east-1b", "us-east-1c"]
+
+managedNodeGroups:
+  - name: worker-ng
+    instanceType: m5.2xlarge
+    desiredCapacity: 2
+    volumeSize: 120
+    availabilityZones: ["us-east-1b"]
+    minSize: 2 # Minimum number of nodes
+    maxSize: 10 # Maximum number of nodes
+    tags:
+      # EC2 tags required for cluster-autoscaler auto-discovery
+      k8s.io/cluster-autoscaler/enabled: "true"
+      k8s.io/cluster-autoscaler/opensearch-dev: "owned"
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+
+addonsConfig:
+  autoApplyPodIdentityAssociations: true
+
+addons:
+  - name: vpc-cni # no version is specified so it deploys the default version
+  - name: coredns
+    version: latest # auto discovers the latest available
+  - name: kube-proxy
+    version: latest
+  - name: aws-ebs-csi-driver
+  - name: amazon-cloudwatch-observability
+  - name: eks-pod-identity-agent
+
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["*"]
+    logRetentionInDays: 180
