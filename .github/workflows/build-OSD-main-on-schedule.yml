@@ -10,7 +10,7 @@ jobs:
     uses: ./.github/workflows/build-opensearch-dashboards.yml
     with:
       deployment_name: "main"
-      version: "3.0.0"
+      version: "3.0.0-beta1"
       node_version: "20.18.3"
     secrets:
       aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
