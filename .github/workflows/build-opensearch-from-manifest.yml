@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       deployment_name:
-        description: 'The name of the deployment'
+        description: "The name of the deployment"
         required: true
       version:
-        description: 'The version of OpenSearch'
+        description: "The version of OpenSearch"
         required: true
 
 jobs:
@@ -16,11 +16,11 @@ jobs:
     env:
       PYTHON_VERSION: 3.9
       JDK_VERSION: 17
-      ARCH: 'x64'
-      PLATFORM: 'linux'
-      AWS_REGION: 'us-east-1'
-      ECR_REGISTRY_ALIAS: 'r9h9r7k4'
-      ECR_REPOSITORY: 'opensearch-dev'
+      ARCH: "x64"
+      PLATFORM: "linux"
+      AWS_REGION: "us-east-1"
+      ECR_REGISTRY_ALIAS: "r9h9r7k4"
+      ECR_REPOSITORY: "opensearch-dev"
       DEPLOYMENT_NAME: ${{ github.event.inputs.deployment_name }}
       SNAPSHOT: ${{ endsWith(github.event.inputs.version, 'SNAPSHOT') && 'true' || 'false' }}
       VERSION: ${{ github.event.inputs.version }}
@@ -67,8 +67,8 @@ jobs:
           run: |
             cp -R workspace workspace_tmp
             cd /home/ci-runner/workspace_tmp/opensearch-build
-            if [ -f ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml ]; then
-              ./build.sh ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} ${{ env.SNAPSHOT == 'true' && '--snapshot' }}
+            if [ -f ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml ]; then
+              ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} ${{ env.SNAPSHOT == 'true' && '--snapshot' }}
               ./assemble.sh tar/builds/opensearch/manifest.yml
             fi
       - name: Build and push docker image
@@ -88,9 +88,9 @@ jobs:
           echo "Pushed docker image: $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG"
 
           cd ${{ github.workspace }}/opensearch-dev-env
-          yq -i '.global.dockerRegistry = "${{ env.REGISTRY }}"' ./deployments/${{ env.DEPLOYMENT_NAME }}/opensearch.yaml
-          yq -i '.image.repository = "${{ env.REGISTRY_ALIAS }}/${{ env.REPOSITORY }}"' ./deployments/${{ env.DEPLOYMENT_NAME }}/opensearch.yaml
-          yq -i '.image.tag = "${{ env.IMAGE_TAG }}"' ./deployments/${{ env.DEPLOYMENT_NAME }}/opensearch.yaml
+          yq -i '.global.dockerRegistry = "${{ env.REGISTRY }}"' ./${{ env.DEPLOYMENT_NAME }}/opensearch.yaml
+          yq -i '.image.repository = "${{ env.REGISTRY_ALIAS }}/${{ env.REPOSITORY }}"' ./${{ env.DEPLOYMENT_NAME }}/opensearch.yaml
+          yq -i '.image.tag = "${{ env.IMAGE_TAG }}"' ./${{ env.DEPLOYMENT_NAME }}/opensearch.yaml
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with:
@@ -101,4 +101,4 @@ jobs:
           signoff: true
           delete-branch: true
           add-paths: |
-            deployments/${{ env.DEPLOYMENT_NAME }}/opensearch.yaml
+            ${{ env.DEPLOYMENT_NAME }}/opensearch.yaml

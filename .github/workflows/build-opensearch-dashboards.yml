@@ -72,8 +72,8 @@ jobs:
           source $NVM_DIR/nvm.sh
           nvm install ${{ env.NODE_VERSION }}
 
-          if [ -f ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml ]; then
-            ./build.sh ../opensearch-dev-env/deployments/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --continue-on-error
+          if [ -f ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml ]; then
+            ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --continue-on-error
             ./assemble.sh tar/builds/opensearch-dashboards/manifest.yml
           fi
       - name: Build and push docker image
@@ -93,9 +93,9 @@ jobs:
           echo "Pushed docker image: $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG"
 
           cd ${{ github.workspace }}/opensearch-dev-env
-          yq -i '.global.dockerRegistry = "${{ env.REGISTRY }}"' ./deployments/${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
-          yq -i '.image.repository = "${{ env.REGISTRY_ALIAS }}/${{ env.REPOSITORY }}"' ./deployments/${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
-          yq -i '.image.tag = "${{ env.IMAGE_TAG }}"' ./deployments/${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
+          yq -i '.global.dockerRegistry = "${{ env.REGISTRY }}"' ./${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
+          yq -i '.image.repository = "${{ env.REGISTRY_ALIAS }}/${{ env.REPOSITORY }}"' ./${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
+          yq -i '.image.tag = "${{ env.IMAGE_TAG }}"' ./${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with:
@@ -106,4 +106,4 @@ jobs:
           signoff: true
           delete-branch: true
           add-paths: |
-            deployments/${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
+            ${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
