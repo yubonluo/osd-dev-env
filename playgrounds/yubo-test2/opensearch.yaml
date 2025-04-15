@@ -2,7 +2,7 @@ replicas: 3
 
 image:
   repository: "opensearchstaging/opensearch"
-  tag: "3.0.0-alpha1.10932"
+  tag: "3.0.0-beta1"
   pullPolicy: "Always"
 
 opensearchJavaOpts: "-Xmx4G -Xms4G"
@@ -76,19 +76,19 @@ securityConfig:
                     strip_realm_from_principal: true
                 authentication_backend:
                   type: noop
-              openid_auth_domain:
-                http_enabled: true
-                transport_enabled: true
-                order: 1
-                http_authenticator:
-                  type: openid
-                  challenge: false
-                  config:
-                    subject_key: email
-                    roles_key: email
-                    openid_connect_url: https://accounts.google.com/.well-known/openid-configuration 
-                authentication_backend:
-                  type: noop
+              # openid_auth_domain:
+              #   http_enabled: true
+              #   transport_enabled: true
+              #   order: 1
+              #   http_authenticator:
+              #     type: openid
+              #     challenge: false
+              #     config:
+              #       subject_key: email
+              #       roles_key: email
+              #       openid_connect_url: https://accounts.google.com/.well-known/openid-configuration 
+              #   authentication_backend:
+              #     type: noop
               basic_internal_auth_domain:
                 description: "Authenticate via HTTP Basic against internal users database"
                 http_enabled: true
