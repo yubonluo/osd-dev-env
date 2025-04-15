@@ -1,8 +1,8 @@
 replicaCount: 2
 
 image:
-  repository: "r9h9r7k4/opensearch-dashboards-dev"
-  tag: "14326804390"
+  repository: "r9h9r7k4/opensearch-dashboards-playground"
+  tag: "14460289426"
 
 config:
   # Default OpenSearch Dashboards configuration from docker image of Dashboards
@@ -69,6 +69,7 @@ config:
     opensearch_security.openid.client_id: 1020416730351-3f201486nqr0ev9u232jptt7is8e56n9.apps.googleusercontent.com
     opensearch_security.openid.client_secret: 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
     opensearch_security.openid.logout_url: https://future.playground.opensearch.org
+    
     # workspace
     workspace.enabled: true
     savedObjects.permission.enabled: true
@@ -90,7 +91,9 @@ config:
     assistant.smartAnomalyDetector.enabled: true
     assistant.alertInsight.enabled: true
     assistant.text2viz.enabled: true
-    # flowFrameworkDashboards.enabled: true
+
+    # Flow Framework
+    flowFrameworkDashboards.enabled: true
 
 global:
   dockerRegistry: public.ecr.aws
