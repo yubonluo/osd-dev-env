@@ -9,8 +9,6 @@ config:
   opensearch_dashboards.yml:
     opensearch.hosts: [https://localhost:9200]
     opensearch.ssl.verificationMode: none
-    opensearch.username: kibanaserver
-    opensearch.password: kibanaserver_2029_OPS
     opensearch.requestHeadersWhitelist: [authorization, securitytenant]
     opensearch_security.auth.anonymous_auth_enabled: true
     opensearch_security.multitenancy.enabled: false
@@ -92,7 +90,7 @@ config:
     assistant.smartAnomalyDetector.enabled: true
     assistant.alertInsight.enabled: true
     assistant.text2viz.enabled: true
-    flowFrameworkDashboards.enabled: true
+    # flowFrameworkDashboards.enabled: true
 
 global:
   dockerRegistry: public.ecr.aws
