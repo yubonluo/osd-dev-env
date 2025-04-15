@@ -22,7 +22,7 @@ config:
     # discovery.zen.minimum_master_nodes: 1
     # Setting network.host to a non-loopback address enables the annoying bootstrap checks. "Single-node" mode disables them again.
     # discovery.type: single-node
-    reindex.remote.whitelist: "k8s-mlplaygr-opensear-c9ea7f8e08-2016635038.us-east-1.elb.amazonaws.com:80"
+    # reindex.remote.whitelist: "k8s-mlplaygr-opensear-c9ea7f8e08-2016635038.us-east-1.elb.amazonaws.com:80"
     plugins:
       security:
         ssl:
