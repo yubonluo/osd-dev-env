@@ -1,0 +1,47 @@
+replicaCount: 1
+image:
+  repository: "r9h9r7k4/opensearch-dashboards-dev"
+  tag: "14326804390"
+config:
+  # security plugin for openid
+    opensearch_security.auth.type: ['Basicauth','openid']
+    opensearch_security.auth.multiple_auth_enabled: true
+    opensearch_security.ui.openid.login.buttonname: "Log in with Google account"
+    opensearch_security.ui.openid.login.brandimage: "https://opensearch.org/assets/brand/PNG/Mark/opensearch_mark_default.png"
+    opensearch_security.ui.openid.login.showbrandimage: true
+    opensearch_security.openid.base_redirect_url: "https://future.playground.opensearch.org"
+    opensearch_security.openid.scope: 'openid profile email'
+    opensearch_security.openid.verify_hostnames: false
+    opensearch_security.openid.refresh_tokens: false
+
+    opensearch_security.openid.connect_url: "https://accounts.google.com/.well-known/openid-configuration"
+    opensearch_security.openid.client_id: 1020416730351-3f201486nqr0ev9u232jptt7is8e56n9.apps.googleusercontent.com
+    opensearch_security.openid.client_secret: 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
+    opensearch_security.openid.logout_url: https://future.playground.opensearch.org
+    
+    # workspace
+    workspace.enabled: true
+    savedObjects.permission.enabled: true
+    opensearchDashboards.dashboardAdmin.users: ["admin", "test1"]
+    assistant.chat.enabled: false
+    opensearch.ignoreVersionMismatch: true
+
+    uiSettings:
+      overrides:
+        "query:enhancements:enabled": true
+        "query:dataSource:readOnly": false
+        "query:dataSourceReadOnly": false
+        "home:useNewHomePage": true
+        # "theme:darkMode": true
+        # "theme:next": true
+
+    # Olly2
+    queryEnhancements.queryAssist.summary.enabled: true
+    assistant.smartAnomalyDetector.enabled: true
+    assistant.alertInsight.enabled: true
+    assistant.text2viz.enabled: true
+
+    # Flow Framework
+    flowFrameworkDashboards.enabled: true
+global:
+  dockerRegistry: public.ecr.aws
