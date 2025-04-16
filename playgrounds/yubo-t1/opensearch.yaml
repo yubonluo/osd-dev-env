@@ -35,7 +35,7 @@ securityConfig:
         config:
           dynamic:
             http:
-              anonymous_auth_enabled: false
+              anonymous_auth_enabled: true
       roles.yml: |
         _meta:
           type: "roles"
