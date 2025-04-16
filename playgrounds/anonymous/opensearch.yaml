@@ -11,6 +11,9 @@ resources:
     cpu: "4"
     memory: "8Gi"
 
+ingress:
+  enabled: false
+
 securityConfig:
   config:
     data:
@@ -25,7 +28,7 @@ securityConfig:
               server_username: "kibanaserver"
               index: ".kibana"
             http:
-              anonymous_auth_enabled: false
+              anonymous_auth_enabled: true
               xff:
                 enabled: false
                 internalProxies: "192\\.168\\.0\\.10|192\\.168\\.0\\.11"
