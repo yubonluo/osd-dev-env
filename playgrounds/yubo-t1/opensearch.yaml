@@ -34,6 +34,10 @@ securityConfig:
           config_version: 2
         config:
           dynamic:
+            kibana:
+              multitenancy_enabled: true
+              server_username: "kibanaserver"
+              index: ".kibana"
             http:
               anonymous_auth_enabled: true
       roles.yml: |
