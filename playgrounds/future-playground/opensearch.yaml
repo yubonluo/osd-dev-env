@@ -168,7 +168,6 @@ securityConfig:
                 transport_enabled: false
                 authorization_backend:
                   type: "ldap"
-
       internal_users.yml: |
         ihailong:
           hash: "$2y$12$V3AH3muNdPsTBBdfgLD2tu2l8B9.nkfImRoEAiIYCLZcikq2iXX5W"
