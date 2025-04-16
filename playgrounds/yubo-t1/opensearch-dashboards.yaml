@@ -7,7 +7,7 @@ image:
 config:
   # Default OpenSearch Dashboards configuration from docker image of Dashboards
   opensearch_dashboards.yml:
-    # opensearch_security.auth.anonymous_auth_enabled: true
+    opensearch_security.auth.anonymous_auth_enabled: true
 
     data_source.endpointDeniedIPs: [
       '127.0.0.0/8',

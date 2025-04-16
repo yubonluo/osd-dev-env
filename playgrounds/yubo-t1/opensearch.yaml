@@ -10,3 +10,29 @@ resources:
   requests:
     cpu: "4"
     memory: "8Gi"
+
+# Enabling this will publically expose your OpenSearch instance.
+# Only enable this if you have security enabled on your cluster
+ingress:
+  enabled: false
+  # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
+  # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+
+  annotations: {}
+
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+
+securityConfig:
+  config:
+    data:
+      config.yml: |
+        _meta:
+          type: "config"
+          config_version: 2
+        config:
+          dynamic:
+            http:
+              anonymous_auth_enabled: false
