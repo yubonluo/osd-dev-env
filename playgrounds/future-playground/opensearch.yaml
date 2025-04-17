@@ -277,7 +277,7 @@ securityConfig:
           opendistro_security_roles: []
           static: false
         kibanaserver:
-          hash: "$2y$12$fYudyhWT/xks1IZhko5Osuja3yrpt8NrQjXN.HdACfIs4uMy5TGKC"
+          hash: "$2y$12$jBoiyBexOmX9Qdc85/CfIu1qS5j0I1BNAAg4daIWrVJtBR.iLNKTm"
           reserved: true
           hidden: false
           backend_roles: []
