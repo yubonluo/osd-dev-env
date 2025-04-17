@@ -58,7 +58,7 @@ config:
     opensearch_security.auth.type: ['Basicauth','openid']
     opensearch_security.auth.multiple_auth_enabled: true
     opensearch_security.ui.openid.login.buttonname: "Log in with Google account"
-    opensearch_security.ui.openid.login.brandimage: "https://opensearch.org/assets/brand/PNG/Mark/opensearch_mark_default.png"
+    opensearch_security.ui.openid.login.brandimage: "https://docs.opensearch.org/assets/brand/PNG/Mark/opensearch_mark_default.png"
     opensearch_security.ui.openid.login.showbrandimage: true
     opensearch_security.openid.base_redirect_url: "http://k8s-futurepl-opensear-e45b455752-916128521.us-east-1.elb.amazonaws.com"
     opensearch_security.openid.scope: 'openid profile email'
