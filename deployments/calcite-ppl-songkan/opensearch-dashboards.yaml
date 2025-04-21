@@ -12,7 +12,7 @@ config:
     assistant.chat.enabled: false
     assistant.next.enabled: true
     assistant.text2viz.enabled: true
-    assistant.alertInsight.enabled: true
+    assistant.alertInsight.enabled: false
     assistant.smartAnomalyDetector.enabled: true
     assistant.incontextInsight.enabled: true
     queryEnhancements.queryAssist.summary.enabled: true
