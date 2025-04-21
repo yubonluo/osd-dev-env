@@ -20,6 +20,6 @@ securityConfig:
             /_cat/nodes:
               - GET
 plugins:
-  enabled: true
+  enabled: false
   installList:
     - https://github.com/ruanyl/osd-dev-env/releases/download/calcite-ppl-3.0.0-beta1/opensearch-sql-3.0.0.0-beta1-SNAPSHOT.zip
