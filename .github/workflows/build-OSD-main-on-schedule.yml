@@ -15,3 +15,12 @@ jobs:
     secrets:
       aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
       aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  build-future-playground:
+    uses: ./.github/workflows/build-opensearch-dashboards.yml
+    with:
+      deployment_name: "playgrounds/future-playground"
+      version: "3.0.0-beta1"
+      node_version: "20.18.3"
+    secrets:
+      aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
