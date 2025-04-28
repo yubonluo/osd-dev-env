@@ -21,7 +21,7 @@ config:
       overrides:
         "home:useNewHomePage": true
 plugins:
-  enabled: true
+  enabled: false
   removeList:
     - assistantDashboards
   installList:
