@@ -1,0 +1,18 @@
+replicaCount: 1
+image:
+  repository: "opensearchproject/opensearch-dashboards"
+  tag: "3.0.0"
+
+# Custom OpenSearch-Dashboards configuration
+config:
+  opensearch_dashboards.yml:
+    workspace.enabled: true
+    savedObjects.permission.enabled: true
+    data_source.enabled: true
+    uiSettings:
+      overrides:
+        "query:enhancements:enabled": true
+        "home:useNewHomePage": true
+    opensearchDashboards.dashboardAdmin.users: ["admin"]
+    queryEnhancements.queryAssist.summary.enabled: true
+    
