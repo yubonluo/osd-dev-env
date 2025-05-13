@@ -35,14 +35,14 @@ config:
     opensearch_security.ui.openid.login.buttonname: "Log in with Google account"
     opensearch_security.ui.openid.login.brandimage: "https://docs.opensearch.org/assets/brand/PNG/Mark/opensearch_mark_default.png"
     opensearch_security.ui.openid.login.showbrandimage: true
-    opensearch_security.openid.base_redirect_url: "http://k8s-futurepl-opensear-e45b455752-916128521.us-east-1.elb.amazonaws.com"
+    opensearch_security.openid.base_redirect_url: "https://future.playground.opensearch.org"
     opensearch_security.openid.scope: 'openid profile email'
     opensearch_security.openid.verify_hostnames: false
     opensearch_security.openid.refresh_tokens: false
     opensearch_security.openid.connect_url: "https://accounts.google.com/.well-known/openid-configuration"
-    opensearch_security.openid.client_id: 51224518517-vdbejevut7fbtab1nl7bm4j9lsatahne.apps.googleusercontent.com
-    opensearch_security.openid.client_secret: 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
-    opensearch_security.openid.logout_url: "http://k8s-futurepl-opensear-e45b455752-916128521.us-east-1.elb.amazonaws.com"
+    opensearch_security.openid.client_id: 1020416730351-3f201486nqr0ev9u232jptt7is8e56n9.apps.googleusercontent.com
+    opensearch_security.openid.client_secret: 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
+    opensearch_security.openid.logout_url: "https://future.playground.opensearch.org"
     # workspace
     workspace.enabled: true
     savedObjects.permission.enabled: true
