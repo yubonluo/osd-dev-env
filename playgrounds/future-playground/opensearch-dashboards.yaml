@@ -60,5 +60,25 @@ config:
     assistant.alertInsight.enabled: true
     assistant.text2viz.enabled: true
     flowFrameworkDashboards.enabled: true
+
+ingress:
+  enabled: true
+  ingressClassName: alb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:330700426359:certificate/5c14b91a-cb55-436f-a6a1-f80dbe48d1b1
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+  hosts:
+    - host: future.playground.opensearch.org
+      paths:
+        - path: /
+          backend:
+              service:
+                name: "opensearch-dashboards-future-playground"
+                port:
+                  number: 80
+
 global:
   dockerRegistry: public.ecr.aws
