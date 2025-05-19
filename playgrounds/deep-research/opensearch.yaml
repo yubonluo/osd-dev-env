@@ -18,5 +18,5 @@ plugins:
     - opensearch-skills
     - opensearch-ml
   installList:
-    - https://github.com/Hailong-am/skills/releases/download/3.1-snapshot/opensearch-skills-3.1.0.0-SNAPSHOT.zip
     - https://github.com/Hailong-am/ml-commons/releases/download/agent_fix/opensearch-ml-3.1.0.0-SNAPSHOT.zip
+    - https://github.com/Hailong-am/skills/releases/download/3.1-snapshot/opensearch-skills-3.1.0.0-SNAPSHOT.zip
