@@ -12,6 +12,10 @@ on:
       node_version:
         description: 'Nodejs version'
         required: false
+      essential_plugins:
+        description: "The essential plugins (comma-separated list)"
+        required: false
+        type: string
 
 jobs:
   build-opensearch-dashboards:
@@ -20,6 +24,7 @@ jobs:
       deployment_name: ${{ github.event.inputs.deployment_name }}
       version: ${{ github.event.inputs.version }}
       node_version: ${{ github.event.inputs.node_version }}
+      ESSENTIAL_PLUGINS: ${{ github.event.inputs.essential_plugins }}
     secrets:
       aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
       aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
