@@ -54,7 +54,7 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Check essential plugin versions
-        if: ${{ env.essential_plugins != '' }}
+        if: ${{ env.ESSENTIAL_PLUGINS != '' }}
         run: |
           MANIFEST_FILE="opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml"
           EXPECTED_VERSION="${{ env.VERSION }}"
