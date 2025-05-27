@@ -39,7 +39,7 @@ jobs:
       ECR_REGISTRY_ALIAS: "r9h9r7k4"
       ECR_REPOSITORY: "opensearch-dashboards-dev"
       DEPLOYMENT_NAME: ${{ inputs.deployment_name }}
-      ESSENTIAL_PLUGINS: ${{ github.event.inputs.essential_plugins }}
+      ESSENTIAL_PLUGINS: ${{ inputs.essential_plugins }}
     steps:
       - uses: actions/checkout@v3
         with:
