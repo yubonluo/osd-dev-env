@@ -16,6 +16,10 @@ on:
         description: "Nodejs version"
         required: false
         type: string
+      essential_plugins:
+        description: "The essential plugins (comma-separated list)"
+        required: false
+        type: string
     secrets:
       aws_access_key_id:
         required: true
@@ -35,6 +39,7 @@ jobs:
       ECR_REGISTRY_ALIAS: "r9h9r7k4"
       ECR_REPOSITORY: "opensearch-dashboards-dev"
       DEPLOYMENT_NAME: ${{ inputs.deployment_name }}
+      ESSENTIAL_PLUGINS: ${{ inputs.essential_plugins }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -48,6 +53,60 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ env.PYTHON_VERSION }}
+      - name: Check essential plugin versions
+        if: ${{ env.ESSENTIAL_PLUGINS != '' }}
+        run: |
+          MANIFEST_FILE="opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml"
+          EXPECTED_VERSION="${{ env.VERSION }}"
+          IFS=',' read -ra PLUGINS <<< "${{ env.ESSENTIAL_PLUGINS }}"
+          echo "Checking plugin versions against expected version: $EXPECTED_VERSION"
+          for plugin in "${PLUGINS[@]}"; do
+            plugin=$(echo "$plugin" | xargs)
+            echo "Checking plugin: $plugin"
+            PLUGIN_SECTION=$(yq '.components[] | select(.name == "'$plugin'")' "$MANIFEST_FILE")
+            if [ -z "$PLUGIN_SECTION" ]; then
+              echo "Warning: Plugin $plugin not found in manifest"
+              exit 1
+            fi
+            REPO_URL=$(echo "$PLUGIN_SECTION" | yq '.repository')
+            COMMIT=$(echo "$PLUGIN_SECTION" | yq '.ref')
+            if [ "$REPO_URL" == "null" ] || [ -z "$REPO_URL" ] || [ "$COMMIT" == "null" ] || [ -z "$COMMIT" ]; then
+              echo "Warning: Could not find repository info for plugin $plugin"
+              exit 1
+            fi
+            echo "Plugin $plugin repository: $REPO_URL, commit/branch: $COMMIT"
+            if [[ $REPO_URL =~ github\.com[:/]([^/]+)/([^/]+)(\.git)?$ ]]; then
+              OWNER=${BASH_REMATCH[1]}
+              REPO=$(echo "${BASH_REMATCH[2]}" | sed 's/\.git$//')
+              echo "Repository owner: $OWNER, name: $REPO"
+              PACKAGE_JSON_URL="https://api.github.com/repos/$OWNER/$REPO/contents/package.json?ref=$COMMIT"
+              echo "Fetching package.json from: $PACKAGE_JSON_URL"
+              PACKAGE_JSON_CONTENT=$(curl -s "$PACKAGE_JSON_URL")
+              if [[ "$PACKAGE_JSON_CONTENT" == *"Not Found"* ]]; then
+                echo "Error: package.json not found for $plugin at $COMMIT"
+                exit 1
+              fi
+              PACKAGE_JSON=$(echo "$PACKAGE_JSON_CONTENT" | jq -r '.content' | base64 --decode)
+              PACKAGE_VERSION=$(echo "$PACKAGE_JSON" | jq -r '.version')
+              if [ -n "$PACKAGE_VERSION" ]; then
+                echo "Plugin $plugin version from package.json: $PACKAGE_VERSION"
+                EXPECTED_MAJOR_MINOR=$(echo "$EXPECTED_VERSION" | cut -d. -f1,2)
+                PACKAGE_MAJOR_MINOR=$(echo "$PACKAGE_VERSION" | cut -d. -f1,2)
+                if [ "$PACKAGE_MAJOR_MINOR" != "$EXPECTED_MAJOR_MINOR" ]; then
+                  echo "Error: Plugin $plugin major/minor version ($PACKAGE_MAJOR_MINOR) does not match expected major/minor version ($EXPECTED_MAJOR_MINOR)"
+                  exit 1
+                fi
+                echo "Plugin $plugin version $PACKAGE_VERSION have compatible versions with $EXPECTED_VERSION"
+              else
+                echo "Error: Could not determine version for plugin $plugin"
+                exit 1
+              fi
+            else
+              echo "Error: Could not parse repository URL for plugin $plugin"
+              exit 1
+            fi
+          done
+          echo "All essential plugins have compatible versions"
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pipenv wheel
