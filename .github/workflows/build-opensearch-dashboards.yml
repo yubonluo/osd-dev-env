@@ -136,7 +136,8 @@ jobs:
               IFS=',' read -ra CRITICAL_PLUGINS <<< "${{ env.ESSENTIAL_PLUGINS }}"
               PLUGINS_SPACE_SEPARATED=$(echo "${{ env.ESSENTIAL_PLUGINS }}" | tr ',' ' ')
               echo "Building: essential plugins"
-              ./build.sh --lock ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --component OpenSearch-Dashboards $PLUGINS_SPACE_SEPARATED --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }}
+              ./build.sh --lock ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml
+              ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml.lock --component OpenSearch-Dashboards $PLUGINS_SPACE_SEPARATED --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }}
               echo "All essential plugins have been build successfully"
               ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml.lock --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --incremental --continue-on-error
             else
