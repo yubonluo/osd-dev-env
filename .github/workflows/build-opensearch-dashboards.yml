@@ -140,7 +140,7 @@ jobs:
               echo "All essential plugins have been build successfully"
             fi
             
-            ./build.sh manifest.lock --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --incremental --continue-on-error
+            ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml.lock --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --incremental --continue-on-error
             ./assemble.sh tar/builds/opensearch-dashboards/manifest.yml
           fi
       - name: Build and push docker image
