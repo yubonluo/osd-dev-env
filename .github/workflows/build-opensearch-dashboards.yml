@@ -136,19 +136,11 @@ jobs:
               IFS=',' read -ra CRITICAL_PLUGINS <<< "${{ env.ESSENTIAL_PLUGINS }}"
               PLUGINS_SPACE_SEPARATED=$(echo "${{ env.ESSENTIAL_PLUGINS }}" | tr ',' ' ')
               echo "Building: essential plugins"
-              ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --component OpenSearch-Dashboards $PLUGINS_SPACE_SEPARATED --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }}
-              # echo "$plugin build successfully"
-              # echo "build essential plugins: ${{ env.ESSENTIAL_PLUGINS }}"
-              # for plugin in "${CRITICAL_PLUGINS[@]}"; do
-              #   plugin=$(echo "$plugin" | xargs)
-              #   echo "Building: $plugin"
-              #   ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --component "$plugin" --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }}
-              #   echo "$plugin build successfully"
-              # done
+              ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --component OpenSearch-Dashboards $PLUGINS_SPACE_SEPARATED --lock --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }}
               echo "All essential plugins have been build successfully"
             fi
             
-            ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --incremental --continue-on-error
+            ./build.sh manifest.lock --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --incremental --continue-on-error
             ./assemble.sh tar/builds/opensearch-dashboards/manifest.yml
           fi
       - name: Build and push docker image
