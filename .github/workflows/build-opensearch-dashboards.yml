@@ -134,16 +134,16 @@ jobs:
           if [ -f ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml ]; then
             if [ ! -z "${{ env.ESSENTIAL_PLUGINS }}" ]; then
               IFS=',' read -ra CRITICAL_PLUGINS <<< "${{ env.ESSENTIAL_PLUGINS }}"
-              echo "Building: $plugin"
-              ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --component "OpenSearch-Dashboards" --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }}
-              echo "$plugin build successfully"
-              echo "build essential plugins: ${{ env.ESSENTIAL_PLUGINS }}"
-              for plugin in "${CRITICAL_PLUGINS[@]}"; do
-                plugin=$(echo "$plugin" | xargs)
-                echo "Building: $plugin"
-                ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --component "$plugin" --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }}
-                echo "$plugin build successfully"
-              done
+              echo "Building: essential plugins"
+              ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --component [OpenSearch-Dashboards,${{ env.ESSENTIAL_PLUGINS }}] --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }}
+              # echo "$plugin build successfully"
+              # echo "build essential plugins: ${{ env.ESSENTIAL_PLUGINS }}"
+              # for plugin in "${CRITICAL_PLUGINS[@]}"; do
+              #   plugin=$(echo "$plugin" | xargs)
+              #   echo "Building: $plugin"
+              #   ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --component "$plugin" --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }}
+              #   echo "$plugin build successfully"
+              # done
               echo "All essential plugins have been build successfully"
             fi
             
