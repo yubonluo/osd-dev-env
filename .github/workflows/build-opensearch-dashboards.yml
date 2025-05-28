@@ -134,8 +134,9 @@ jobs:
           if [ -f ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml ]; then
             if [ ! -z "${{ env.ESSENTIAL_PLUGINS }}" ]; then
               IFS=',' read -ra CRITICAL_PLUGINS <<< "${{ env.ESSENTIAL_PLUGINS }}"
+              PLUGINS_SPACE_SEPARATED=$(echo "${{ env.ESSENTIAL_PLUGINS }}" | tr ',' ' ')
               echo "Building: essential plugins"
-              ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --component OpenSearch-Dashboards,${{ env.ESSENTIAL_PLUGINS }} --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }}
+              ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --component OpenSearch-Dashboards $PLUGINS_SPACE_SEPARATED --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }}
               # echo "$plugin build successfully"
               # echo "build essential plugins: ${{ env.ESSENTIAL_PLUGINS }}"
               # for plugin in "${CRITICAL_PLUGINS[@]}"; do
