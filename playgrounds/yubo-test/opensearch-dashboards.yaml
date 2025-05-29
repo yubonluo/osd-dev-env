@@ -4,10 +4,5 @@ image:
   repository: "r9h9r7k4/opensearch-dashboards-dev"
   tag: "14460289426"
 
-config:
-  # Default OpenSearch Dashboards configuration from docker image of Dashboards
-  opensearch_dashboards.yml:
-    opensearch_security.auth.anonymous_auth_enabled: true
-
 global:
   dockerRegistry: public.ecr.aws
