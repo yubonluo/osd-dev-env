@@ -139,7 +139,11 @@ jobs:
             INSTALLED_PLUGINS=$(echo "$INSTALLED_LINE" | sed -E "s/.*\[(.*)\].*/\1/" | tr -d "'\" " | tr ',' '\n')
             echo "Installed plugins:"
             echo "$INSTALLED_PLUGINS"
-            IFS=',' read -ra REQUIRED <<< "${{ env.ESSENTIAL_PLUGINS }}"
+            IFS=',' read -ra REQUIRED_TMP <<< "${{ env.ESSENTIAL_PLUGINS }}"
+            for i in "${!REQUIRED_TMP[@]}"; do
+              REQUIRED_TMP[i]=$(echo "${REQUIRED_TMP[i]}" | xargs)
+            done
+            REQUIRED=("${REQUIRED_TMP[@]}")
             MISSING=0
             for plugin in "${REQUIRED[@]}"; do
               if echo "$INSTALLED_PLUGINS" | grep -q -x "$plugin"; then
