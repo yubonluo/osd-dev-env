@@ -5,6 +5,14 @@ image:
   tag: "3.1.0"
   pullPolicy: "Always"
 
+config:
+  opensearch.yml:
+    plugins:
+      security:
+        system_indices.enabled: false
+      ml_commons:
+        agent_framework_enabled: true
+
 securityConfig:
   config:
     data:
