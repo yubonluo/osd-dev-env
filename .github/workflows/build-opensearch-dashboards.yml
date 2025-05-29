@@ -132,9 +132,10 @@ jobs:
           nvm install ${{ env.NODE_VERSION }}
 
           if [ -f ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml ]; then
-            ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --continue-on-error | tee build_output.log
-            echo "Checking installed plugins from build_output.log..."
-            INSTALLED_LINE=$(grep "Installed plugins" build_output.log | tail -n1)
+            ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --continue-on-error
+            ./assemble.sh tar/builds/opensearch-dashboards/manifest.yml | tee assemble.log
+            echo "Checking installed plugins from assemble.log..."
+            INSTALLED_LINE=$(grep "Installed plugins" assemble.log | tail -n1)
             echo "Matched log line: $INSTALLED_LINE"
             INSTALLED_PLUGINS=$(echo "$INSTALLED_LINE" | sed -E "s/.*\[(.*)\].*/\1/" | tr -d "'\" " | tr ',' '\n')
             echo "Installed plugins:"
@@ -159,7 +160,6 @@ jobs:
             else
               echo "✅ All essential plugins were successfully built."
             fi
-            ./assemble.sh tar/builds/opensearch-dashboards/manifest.yml
           fi
       - name: Build and push docker image
         env:
