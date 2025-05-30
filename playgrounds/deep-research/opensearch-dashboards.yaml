@@ -25,4 +25,4 @@ plugins:
   removeList:
     - observabilityDashboards
   installList:
-    - https://github.com/wanglam/dashboards-observability/releases/download/main-experimental.15296959053/observabilityDashboards-3.1.0.zip
+    - https://github.com/wanglam/dashboards-observability/releases/download/main-experimental.15321345295/observabilityDashboards-3.1.0.zip
