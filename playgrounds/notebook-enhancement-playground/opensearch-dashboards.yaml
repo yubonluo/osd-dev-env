@@ -1,7 +1,8 @@
 replicaCount: 1
 image:
   repository: "r9h9r7k4/opensearch-dashboards-dev"
-  tag: "15437840301"
+  tag: "15529880119" 
+  # 15529880119
 # Custom OpenSearch-Dashboards configuration
 config:
   opensearch_dashboards.yml:
