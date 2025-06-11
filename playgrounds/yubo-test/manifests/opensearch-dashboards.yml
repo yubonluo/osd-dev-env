@@ -10,9 +10,3 @@ components:
   - name: OpenSearch-Dashboards
     repository: https://github.com/opensearch-project/OpenSearch-Dashboards.git
     ref: "main"
-  - name: assistantDashboards
-    repository: https://github.com/opensearch-project/dashboards-assistant.git
-    ref: "main"
-  - name: flowFrameworkDashboards
-    repository: https://github.com/opensearch-project/dashboards-flow-framework.git
-    ref: "main"
