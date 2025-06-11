@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
   repository: "r9h9r7k4/opensearch-dashboards-dev"
-  tag: "15574533945"
+  tag: "15575077665"
 global:
   dockerRegistry: public.ecr.aws
