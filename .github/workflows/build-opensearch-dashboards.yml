@@ -131,6 +131,9 @@ jobs:
           source $NVM_DIR/nvm.sh
           nvm install ${{ env.NODE_VERSION }}
 
+          export BUILD_NUMBER=${{ github.run_id }}
+          echo "Using BUILD_NUMBER: $BUILD_NUMBER"
+
           if [ -f ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml ]; then
             ./build.sh ../opensearch-dev-env/${{ env.DEPLOYMENT_NAME }}/manifests/opensearch-dashboards.yml --architecture ${{ env.ARCH }} --platform ${{ env.PLATFORM }} --continue-on-error
             ./assemble.sh tar/builds/opensearch-dashboards/manifest.yml | tee assemble.log
