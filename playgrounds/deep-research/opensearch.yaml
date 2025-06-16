@@ -12,3 +12,10 @@ config:
         system_indices.enabled: false
       ml_commons:
         agent_framework_enabled: true
+
+plugins:
+  enabled: true
+  removeList:
+    - opensearch-skills
+  installList:
+    - https://github.com/Hailong-am/skills/releases/download/t2ppl_fix/opensearch-skills-3.1.0.0-SNAPSHOT.zip
