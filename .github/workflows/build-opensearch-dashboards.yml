@@ -169,8 +169,10 @@ jobs:
           REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
           REGISTRY_ALIAS: ${{ env.ECR_REGISTRY_ALIAS }}
           REPOSITORY: ${{ env.ECR_REPOSITORY }}
-          IMAGE_TAG: ${{ github.run_id }}-${{ env.DEPLOYMENT_NAME }}
         run: |
+          CLEAN_NAME=$(echo "${{ env.DEPLOYMENT_NAME }}" | tr -d '/')
+          IMAGE_TAG="${{ github.run_id }}-${CLEAN_NAME}"
+          echo "IMAGE_TAG=${IMAGE_TAG}" >> $GITHUB_ENV
           artifact_name=opensearch-dashboards-${{env.VERSION}}-${{ env.PLATFORM }}-${{ env.ARCH }}.tar.gz
           tarball=$(realpath opensearch-build/tar/dist/opensearch-dashboards/$artifact_name)
           cd ./opensearch-build/docker/release
