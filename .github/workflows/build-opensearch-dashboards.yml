@@ -169,7 +169,7 @@ jobs:
           REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
           REGISTRY_ALIAS: ${{ env.ECR_REGISTRY_ALIAS }}
           REPOSITORY: ${{ env.ECR_REPOSITORY }}
-          IMAGE_TAG: ${{ github.run_id }}
+          IMAGE_TAG: ${{ github.run_id }}-${{ github.job }}
         run: |
           artifact_name=opensearch-dashboards-${{env.VERSION}}-${{ env.PLATFORM }}-${{ env.ARCH }}.tar.gz
           tarball=$(realpath opensearch-build/tar/dist/opensearch-dashboards/$artifact_name)
