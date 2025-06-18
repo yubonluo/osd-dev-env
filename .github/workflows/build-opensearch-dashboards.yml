@@ -185,7 +185,7 @@ jobs:
           cd ${{ github.workspace }}/opensearch-dev-env
           yq -i '.global.dockerRegistry = "${{ env.REGISTRY }}"' ./${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
           yq -i '.image.repository = "${{ env.REGISTRY_ALIAS }}/${{ env.REPOSITORY }}"' ./${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
-          yq -i '.image.tag = "${IMAGE_TAG}"' ./${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
+          yq -i '.image.tag = "$IMAGE_TAG"' ./${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with:
