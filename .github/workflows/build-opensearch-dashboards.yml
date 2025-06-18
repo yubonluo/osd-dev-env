@@ -170,8 +170,8 @@ jobs:
           REGISTRY_ALIAS: ${{ env.ECR_REGISTRY_ALIAS }}
           REPOSITORY: ${{ env.ECR_REPOSITORY }}
         run: |
-          CLEAN_NAME=$(echo "${{ env.DEPLOYMENT_NAME }}" | tr '/' '-')
-          IMAGE_TAG="${{ github.run_id }}-${CLEAN_NAME}"
+          export CLEAN_NAME=$(echo "${{ env.DEPLOYMENT_NAME }}" | tr '/' '-')
+          export IMAGE_TAG="${{ github.run_id }}-${CLEAN_NAME}"
           echo "IMAGE_TAG=${IMAGE_TAG}"
           artifact_name=opensearch-dashboards-${{env.VERSION}}-${{ env.PLATFORM }}-${{ env.ARCH }}.tar.gz
           tarball=$(realpath opensearch-build/tar/dist/opensearch-dashboards/$artifact_name)
@@ -185,7 +185,7 @@ jobs:
           cd ${{ github.workspace }}/opensearch-dev-env
           yq -i '.global.dockerRegistry = "${{ env.REGISTRY }}"' ./${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
           yq -i '.image.repository = "${{ env.REGISTRY_ALIAS }}/${{ env.REPOSITORY }}"' ./${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
-          yq -i '.image.tag = "$IMAGE_TAG"' ./${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
+          yq -i '.image.tag = strenv(IMAGE_TAG)' ./${{ env.DEPLOYMENT_NAME }}/opensearch-dashboards.yaml
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with:
