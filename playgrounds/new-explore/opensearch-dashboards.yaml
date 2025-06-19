@@ -12,7 +12,6 @@ config:
     assistant.chat.enabled: false
     assistant.next.enabled: true
     assistant.text2viz.enabled: true
-    assistant.text2dash.enabled: true
     assistant.alertInsight.enabled: true
     assistant.smartAnomalyDetector.enabled: true
     assistant.incontextInsight.enabled: true
