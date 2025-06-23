@@ -18,4 +18,4 @@ plugins:
   removeList:
     - opensearch-skills
   installList:
-    - https://github.com/wanglam/skills/releases/download/release-1750646581488/opensearch-skills-3.1.0.0-SNAPSHOT-1750646581488.zip
+    - https://github.com/wanglam/skills/releases/download/release-1750649441655/opensearch-skills-3.1.0.0-SNAPSHOT-1750649441655.zip
