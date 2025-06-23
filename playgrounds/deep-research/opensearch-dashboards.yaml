@@ -26,3 +26,7 @@ plugins:
     - observabilityDashboards
   installList:
     - https://github.com/wanglam/dashboards-observability/releases/download/main-experimental.15818480666/observabilityDashboards-3.1.0.zip
+
+extraEnvs:
+  - name: "DEBUG"
+    value: "opensearch"
