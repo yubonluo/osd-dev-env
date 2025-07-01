@@ -1,0 +1,14 @@
+replicas: 4
+
+image:
+  repository: "opensearchproject/opensearch"
+  tag: "3.1.0"
+
+opensearchJavaOpts: "-Xmx4G -Xms4G"
+resources:
+  requests:
+    cpu: "4"
+    memory: "8Gi"
+
+persistence:
+  size: 240Gi
