@@ -2,3 +2,10 @@ replicaCount: 1
 image:
   repository: "opensearchproject/opensearch-dashboards"
   tag: "3.1.0"
+
+plugins:
+  enabled: true
+  removeList:
+    - searchRelevanceDashboards
+  installList:
+    - https://github.com/ruanyl/osd-dev-env/releases/download/artifacts/searchRelevanceDashboards-3.1.0.zip
