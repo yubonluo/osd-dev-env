@@ -4,11 +4,11 @@ image:
   repository: "opensearchproject/opensearch"
   tag: "3.1.0"
 
-opensearchJavaOpts: "-Xmx4G -Xms4G"
+opensearchJavaOpts: "-Xmx12G -Xms12G"
 resources:
   requests:
     cpu: "4"
-    memory: "8Gi"
+    memory: "24Gi"
 
 persistence:
   size: 240Gi
