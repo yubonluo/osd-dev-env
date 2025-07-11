@@ -5,6 +5,15 @@ image:
   tag: "3.1.0"
   pullPolicy: "Always"
 
+resources:
+  requests:
+    cpu: "4"
+    memory: "8Gi"
+
+persistence:
+  size: 200Gi
+
+
 config:
   opensearch.yml:
     plugins:
