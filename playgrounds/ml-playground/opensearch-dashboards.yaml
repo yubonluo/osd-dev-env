@@ -8,4 +8,4 @@ plugins:
   removeList:
     - searchRelevanceDashboards
   installList:
-    - https://github.com/ruanyl/osd-dev-env/releases/download/artifacts/searchRelevanceDashboards-3.1.0.zip
+    - https://github.com/Hailong-am/osd-dev-env/releases/download/searchrelevence/searchRelevanceDashboards-3.1.0.zip
