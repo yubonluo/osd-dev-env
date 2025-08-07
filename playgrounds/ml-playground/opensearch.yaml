@@ -229,7 +229,7 @@ securityConfig:
           reserved: false
           backend_roles:
           - "snapshotrestore"
-          description: "Demo snapshotrestore user"    
+          description: "Demo snapshotrestore user"
       roles.yml: |
         _meta:
           type: "roles"
@@ -465,7 +465,7 @@ securityConfig:
 
         # Anonymous access role
         opendistro_security_anonymous_role:
-          reserved: true
+          reserved: false
           cluster_permissions:
             # For using _cat/indices
             - 'cluster:monitor/state'
@@ -478,6 +478,9 @@ securityConfig:
             - cluster:admin/opendistro/transform/get_transforms
             # To enable read access ml profile
             - cluster:admin/opensearch/ml/profile/nodes
+            - cluster:admin/opensearch/ml/trainAndPredict
+            - cluster:admin/opensearch/ml/connectors/search
+            - cluster:admin/opensearch/ml/predict
             # To enable read access to various ISM Jobs
             - cluster:admin/opendistro/rollup/explain
             - cluster:admin/opendistro/ism/policy/get
