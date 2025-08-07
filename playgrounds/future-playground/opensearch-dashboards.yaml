@@ -43,6 +43,8 @@ config:
     opensearch_security.openid.client_id: 1020416730351-3f201486nqr0ev9u232jptt7is8e56n9.apps.googleusercontent.com
     opensearch_security.openid.client_secret: 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
     opensearch_security.openid.logout_url: "https://future.playground.opensearch.org"
+    # new discover
+    explore.enabled=true
     # workspace
     workspace.enabled: true
     savedObjects.permission.enabled: true
