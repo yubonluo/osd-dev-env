@@ -1,0 +1,13 @@
+replicas: 1
+
+image:
+  repository: "opensearchstaging/opensearch"
+  tag: "3.2.0"
+  pullPolicy: "Always"
+
+plugins:
+  enabled: true
+  removeList:
+    - opensearch-ml
+  installList:
+    - https://github.com/ruanyl/osd-dev-env/releases/download/opensearch-ml-3.2.0.0-SNAPSHOT/opensearch-ml-3.2.0.0-SNAPSHOT.zip
